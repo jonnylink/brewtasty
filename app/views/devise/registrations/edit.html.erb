@@ -1,0 +1,42 @@
+<div id="content">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.text_field :username, placeholder: "username", id: "username", autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, id: "email", placeholder: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.password_field :password, placeholder: "new password (if you want to change it)", autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, placeholder: "confirm new password", autocomplete: "off" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :current_password, placeholder: "current password", autocomplete: "off" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "update" %>
+    </div>
+  <% end %>
+
+  <br />
+
+  <h3>Want to leave forever?</h3>
+  <%= button_to "delete my account", registration_path(resource_name), data: { confirm: "Really? This cannot be undone." }, method: :delete %>
+
+  <%= link_to "Back", :back, id: "back_link" %>
+</div>

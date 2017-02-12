@@ -1,0 +1,7 @@
+<%= form_for([@recipe, @rating]) do |f| %>
+  <%= f.collection_radio_buttons :rating, RATINGS[1..4].reverse, :to_s, :to_s %>
+  <%= f.text_field :comment, placeholder: "Comments (optional)" %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :recipe_id, value: @recipe.id %>
+  <%= f.submit "submit" %>
+<% end %>

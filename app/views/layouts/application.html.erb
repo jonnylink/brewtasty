@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TastyBrew</title>
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body>
+
+    <header>
+      <h1><i class="fa fa-beer" aria-hidden="true"></i>&nbsp;<%= link_to "TastyBrew", root_path, id: "site_title" %></h1>
+      <div id="login_info">
+        <%= render 'devise/menu/login_items' %>
+      </div>
+    </header>
+
+    <% if flash[:alert] %>
+      <div class="flash flash_error">
+        <%= flash[:alert] %>
+      </div>
+    <% elsif flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <div id="page">
+      <%= yield %>
+    </div>
+
+  </body>
+</html>

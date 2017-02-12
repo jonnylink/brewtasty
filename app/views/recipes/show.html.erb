@@ -1,0 +1,57 @@
+<div id="content">
+  <h2>
+    <%= @recipe.name %>
+    <span id="brew_score">
+      <strong>Taste:</strong>
+      <% if @recipe.ratings.count > 0 %>
+        <%= Rating.rating_description(@recipe.ratings.inject(0){ |sum, rating| sum + rating["rating"] } / @recipe.ratings.count) %>
+      <% else %>
+        <%= Rating.rating_description(0) %>
+      <% end %>
+    </span>
+  </h2>
+  <p id="creator">by <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+
+  <h3>Ingredients</h3>
+  <table id="ingredient_table">
+  <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+    <tr class="ingredient">
+      <td class="amount"><%= "#{recipe_ingredient.amount}#{recipe_ingredient.unit}" %></td>
+      <td><%= recipe_ingredient.ingredient.name %></td>
+      <td><%= recipe_ingredient.ingredient.category %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% if current_user && current_user.id == @recipe.user_id %>
+  <div id="control_bar">
+    <%= link_to '<i class="fa fa-edit"></i> edit'.html_safe, edit_recipe_path(@recipe) %>&nbsp;&bull;&nbsp;<%= link_to '<i class="fa fa-trash-o"></i> delete recipe'.html_safe, "/recipes/#{@recipe.id}/remove", :onclick => "if (confirm('Do you really want to permanently delete this recipe?') == false){ event.preventDefault(); }" %>
+  </div>
+<% end %>
+
+  <h3>People are saying&hellip;</h3>
+
+  <p class="click" onclick="document.getElementById('new_rating_area').style.display='block'">say something <i class="fa fa-comment" aria-hidden="true"></i></p>
+  <div id="new_rating_area">
+    <% if current_user && current_user.id != @recipe.user_id %>
+      <%= render 'ratings/form', rating: @rating %>
+    <% elsif current_user %>
+      <p>(Sorry, you cannot rate your own recipe.)</p>
+    <% else %>
+      <p>(<%= link_to "sign in", user_session_path %> to rate this beer recipe.)</p>
+    <% end %>
+  </div>
+
+  <ul id="rating_list">
+  <% @recipe.ratings.each do |rating| %>
+    <li class="rating">
+      <strong><%= Rating::rating_description(rating.rating) %></strong>
+      <%= "<br />".html_safe if !rating.comment.nil? && !rating.comment.empty? %>
+      <%= rating.comment %>
+      &mdash;&nbsp;<%= rating.user.username %>
+      <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, rating, method: :delete, id: "delete_rating_#{rating.user_id}", data: {confirm: "Really? Permanently delete rating?"} if current_user && current_user.id == rating.user_id %>
+    </li>
+  <% end %>
+  </ul>
+
+</div>

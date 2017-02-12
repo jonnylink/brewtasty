@@ -1,0 +1,24 @@
+<div id="content">
+  <h2>
+    Tasty Recipes
+  <% if current_user %>
+    <span id="add_recipe_link">
+      <%= link_to "add recipe", new_recipe_path %>
+    </span>
+  <% end %>
+  </h2>
+
+  <ul id="recipe_list">
+  <% @recipes.each do |recipe| %>
+    <li>
+      <%= link_to recipe.name, recipe_path(recipe), class: "recipe" %>
+      <span class="rating">
+        <% if recipe.ratings.count > 0 %>
+          <%= Rating.rating_description(recipe.ratings.inject(0){ |sum, rating| sum + rating["rating"] } / recipe.ratings.count) %>
+        <% else %>
+          <%= Rating.rating_description(0) %>
+        <% end %>
+      </span>
+    </li>
+  <% end %>
+</div>
