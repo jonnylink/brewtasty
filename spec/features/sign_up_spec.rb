@@ -54,8 +54,6 @@ feature "user signs up" do
      expect(page).to have_content("sign up!")
      expect(page).to have_content("doesn't match")
    end
-end
 
-# As a prospective user
-# I want the option to create an account using google
-# So that I can post beer recipes and review them
+   pending "prospective user can sign up using google account"
+end
