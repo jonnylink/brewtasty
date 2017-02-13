@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20170211225821) do
     t.float    "keg_temp"
     t.float    "storage_temp"
     t.float    "age_for"
+    t.index ["name"], name: "index_recipes_on_name", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
