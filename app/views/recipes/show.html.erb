@@ -23,7 +23,7 @@
   <% end %>
 </table>
 
-<% if current_user && current_user.id == @recipe.user_id %>
+<% if current_user && (current_user.id == @recipe.user_id || current_user.admin === true ) %>
   <div id="control_bar">
     <%= link_to '<i class="fa fa-edit"></i> edit'.html_safe, edit_recipe_path(@recipe) %>&nbsp;&bull;&nbsp;<%= link_to '<i class="fa fa-trash-o"></i> delete recipe'.html_safe, "/recipes/#{@recipe.id}/remove", :onclick => "if (confirm('Do you really want to permanently delete this recipe?') == false){ event.preventDefault(); }" %>
   </div>
@@ -49,7 +49,7 @@
       <%= "<br />".html_safe if !rating.comment.nil? && !rating.comment.empty? %>
       <%= rating.comment %>
       &mdash;&nbsp;<%= rating.user.username %>
-      <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, rating, method: :delete, id: "delete_rating_#{rating.user_id}", data: {confirm: "Really? Permanently delete rating?"} if current_user && current_user.id == rating.user_id %>
+      <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, rating, method: :delete, id: "delete_rating_#{rating.user_id}", data: {confirm: "Really? Permanently delete rating?"} if current_user && (current_user.id == rating.user_id || current_user.admin === true) %>
     </li>
   <% end %>
   </ul>

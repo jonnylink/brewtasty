@@ -73,7 +73,7 @@ class RecipesController < ApplicationController
   end
 
   def authorize_user
-    if !current_user || current_user.id != @recipe.user_id
+    if !current_user || (current_user.id != @recipe.user_id && current_user.admin === false)
       render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
     end
   end

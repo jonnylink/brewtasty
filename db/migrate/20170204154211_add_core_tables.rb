@@ -15,8 +15,7 @@ class AddCoreTables < ActiveRecord::Migration[5.0]
       t.integer :active, default: 1
       t.timestamps
     end
-    add_index :recipes, :name, unique: true
-    
+    add_index :recipes, :name, unique: true    
 
     create_table :ingredients do |t|
       t.string :name, null: false
