@@ -8,4 +8,12 @@ class User < ApplicationRecord
 
   validates :username, presence: true
   validates :email, uniqueness: true, presence: true
+
+  def active_for_authentication?
+    super && active == 1
+  end
+
+  def inactive_message
+    active == 1 ? super : :locked
+  end
 end

@@ -1,0 +1,15 @@
+<div id="content">
+  <h2>Users</h2>
+  <ul>
+    <% @users.each do |user| %>
+      <li>
+        <%= user.username %> &nbsp;&nbsp;
+        <% if user.active == 1 && !user.admin %>
+          <%= link_to '<i class="fa fa-ban"></i> ban'.html_safe, "/admin/users/#{user.id}/ban", id: "ban_user_#{user.id}" %>
+        <% elsif user.active == 2 && !user.admin %>
+          BANNED (<%= link_to '<i class="fa fa-thumbs-o-up"></i> unban'.html_safe, "/admin/users/#{user.id}/unban", id: "unban_user_#{user.id}" %>)
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

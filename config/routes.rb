@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users, only: [:index, :show, :remove, :ban]
-    resources :ratings, only: [:index, :show, :remove]
-    resources :recipes, only: [:index, :show, :remove]
+    resources :users, only: [:index, :show, :destroy, :ban]
+    get '/users/:id/ban', to: 'users#ban'
+    get '/users/:id/unban', to: 'users#unban'
   end
 
   get '/recipes/:id/remove', to: 'recipes#remove'
