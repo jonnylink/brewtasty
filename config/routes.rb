@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :recipes do
     resources :ratings
+    post 'search', on: :collection
   end
 
   namespace :admin do

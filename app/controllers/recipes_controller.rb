@@ -48,6 +48,16 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search
+    query = "%#{params[:search_recipes]}%"
+    @recipes = Recipe.where('name ILIKE ?', query)
+    if @recipes.count > 0
+      flash[:notice] = "Recipes found. Searched for: #{params[:search_recipes]}."
+    else
+      flash[:alert] = "Sorry, no recipes found. Searched for: #{params[:search_recipes]}."
+    end
+  end
+
   private
   def set_recipe
     @recipe = Recipe.find(params[:id])
