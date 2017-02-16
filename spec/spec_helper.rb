@@ -1,7 +1,9 @@
 RSpec.configure do |config|
   require 'support/authentication_helper'
   config.include AuthenticationHelper
-
+  require 'coveralls'
+  Coveralls.wear!('rails')
+  
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods

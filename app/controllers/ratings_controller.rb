@@ -20,6 +20,7 @@ class RatingsController < ApplicationController
   end
 
   def create
+    #binding.pry
     final_rating_params = rating_params
     final_rating_params["rating"] = Rating::rating_array_index(rating_params["rating"])
     final_rating_params["comment"] = rating_params["comment"].strip

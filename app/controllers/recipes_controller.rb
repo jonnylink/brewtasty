@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
 
   def search
     query = "%#{params[:search_recipes]}%"
-    @recipes = Recipe.where('name ILIKE ?', query)
+    @recipes = Recipe.joins(:user).where('name ILIKE ? OR username ILIKE ?', query, query)
     if @recipes.count > 0
       flash[:notice] = "Recipes found. Searched for: #{params[:search_recipes]}."
     else
