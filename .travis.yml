@@ -3,8 +3,8 @@ language: ruby
 rvm:
   - 2.2.5
 
-env:
-  - DB=postgresql
+services:
+  - postgresql
 
-notifications:
-  email: false
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
