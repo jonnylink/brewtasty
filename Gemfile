@@ -35,6 +35,7 @@ group :development do
 end
 
 group :test do
+  gem 'travis'
   gem 'coveralls', require: false
 end
 
