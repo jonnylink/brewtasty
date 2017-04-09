@@ -2,6 +2,12 @@ require "rails_helper"
 
 feature "admin management" do
 
+  scenario "normal users cannot access admin functions" do
+    user = FactoryGirl.create(:user)
+    visit 'admin/users'
+    expect(page).to have_content("The page you were looking for doesn't exist.")
+  end
+
   scenario "admin can delete any rating" do
     user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:recipe, user: user)

@@ -75,7 +75,7 @@ h1{
 header i{
   color:#e7eaed;
 }
-a#site_title{ color: #767a7e; }
+#site_title:link, #site_title:visited{ color: #767a7e; }
 #header_links{
   padding:2rem 0 1rem 0;
   text-align: right;

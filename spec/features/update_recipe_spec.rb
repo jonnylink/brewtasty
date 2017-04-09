@@ -27,6 +27,20 @@ feature "update recipe" do
     expect(page).to have_content("neat-o beer")
   end
 
+  scenario "authenticated user can edit user created recipe" do
+    user = FactoryGirl.create(:user)
+    beer = FactoryGirl.create(:recipe, user: user)
+
+    sign_in_as user
+    visit edit_recipe_path(beer)
+
+    fill_in "recipe_name", with: ""
+    fill_in "recipe_notes", with: ""
+    click_button "update Recipe"
+
+    expect(page).to have_content("Recipe not updated! Name can't be blank")
+  end
+
   scenario "authenticated user cannot edit other user's recipe" do
     user = FactoryGirl.create(:user)
     beer = FactoryGirl.create(:recipe, user: user)

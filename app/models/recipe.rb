@@ -5,5 +5,5 @@ class Recipe < ApplicationRecord
   has_many :ingredients, :through => :recipe_ingredients
 
   validates :user_id, presence: true
-  validates :name, uniqueness: true, presence: true
+  validates :name, presence: true, uniqueness: true
 end
