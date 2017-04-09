@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :remove]
-  before_action :authorize_user, only: [:update, :edit, :remove]
+  before_action only: [:update, :edit, :remove] do
+    authorize_user(@recipe)
+  end
 
   def index
     @recipes = Recipe.where(active: 1)
@@ -80,12 +82,6 @@ class RecipesController < ApplicationController
       :storage_temp,
       :age_for
     )
-  end
-
-  def authorize_user
-    if !current_user || (current_user.id != @recipe.user_id && current_user.admin === false)
-      render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
-    end
   end
 
 end

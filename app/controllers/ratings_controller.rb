@@ -1,6 +1,8 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :remove, :destroy]
-  before_action :authorize_user, only: [:update, :edit, :destroy]
+  before_action only: [:update, :edit, :destroy] do
+    authorize_user(@rating)
+  end
 
   # def index
   #   @ratings = Rating.all
@@ -48,9 +50,4 @@ class RatingsController < ApplicationController
     params.require(:rating).permit(:rating, :comment, :recipe_id, :user_id)
   end
 
-  def authorize_user
-    if !current_user || (current_user.id != @rating.user_id && current_user.admin === false)
-      render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
-    end
-  end
 end
