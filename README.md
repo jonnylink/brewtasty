@@ -3,4 +3,4 @@
 [![Coverage Status](https://coveralls.io/repos/github/jonnylink/tastybrew/badge.svg?branch=master)](https://coveralls.io/github/jonnylink/tastybrew?branch=master)
 
 # README
-This is a breakable toy.
+TastyBrew will be an inventory tracking and recipe suggestion tool for craft and home brewers.
