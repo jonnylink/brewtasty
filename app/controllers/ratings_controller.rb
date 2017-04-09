@@ -2,22 +2,22 @@ class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :remove, :destroy]
   before_action :authorize_user, only: [:update, :edit, :destroy]
 
-  def index
-    @ratings = Rating.all
-  end
+  # def index
+  #   @ratings = Rating.all
+  # end
 
-  def show
-  end
+  # def show
+  # end
 
-  def edit
-  end
+  # def edit
+  # end
+  #
+  # def update
+  # end
 
-  def update
-  end
-
-  def new
-    @rating = Rating.new
-  end
+  # def new
+  #   @rating = Rating.new
+  # end
 
   def create
     #binding.pry

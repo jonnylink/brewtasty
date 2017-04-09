@@ -11,6 +11,8 @@ class Rating < ApplicationRecord
   def self.rating_description(rating)
     if rating == 0
       RATINGS[0]
+    elsif rating > 4
+      RATINGS[5]
     elsif rating >= 3.8
       RATINGS[4]
     elsif rating >= 3

@@ -1,4 +1,4 @@
-RSpec.describe User, type: :model do
+RSpec.describe User do
   it {expect validate_presence_of(:username)}
   it {expect validate_presence_of(:email)}
   it {expect validate_uniqueness_of(:email)}
