@@ -1,6 +1,4 @@
 # TastyBrew
-========================================
-
 
 [![Build Status](https://travis-ci.org/jonnylink/tastybrew.svg?branch=master)](https://travis-ci.org/jonnylink/tastybrew)
 ![Code Climate](https://codeclimate.com/github/jonnylink/tastybrew/badges/gpa.svg)
