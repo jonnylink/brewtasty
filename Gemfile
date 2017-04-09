@@ -36,7 +36,7 @@ end
 
 group :test do
   gem 'travis'
-  gem 'coveralls', require: false
+  gem 'codeclimate-test-reporter', '~> 1.0.0'
 end
 
 group :production do

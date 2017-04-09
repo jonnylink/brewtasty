@@ -2,7 +2,7 @@
 ========================================
 
 
-![Build Status](https://codeship.com/projects/1d638120-d608-0134-9070-3699055d7bd4/status?branch=master)
+[![Build Status](https://travis-ci.org/jonnylink/tastybrew.svg?branch=master)](https://travis-ci.org/jonnylink/tastybrew)
 ![Code Climate](https://codeclimate.com/github/jonnylink/tastybrew/badges/gpa.svg)
 ![Coverage Status](https://coveralls.io/repos/github/jonnylink/tastybrew/badge.svg?branch=master)
 

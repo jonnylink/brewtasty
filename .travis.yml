@@ -7,7 +7,14 @@ rvm:
 services:
   - postgresql
 
+addons:
+  code_climate:
+    repo_token: 80915870980f059d7f8945c1907d8bbd1cdc7b0be69d1d5071e9767e77d64564
+
 before_script:
   - psql -c 'create database tasty_brew_test;' -U postgres
   - bundle exec rake db:migrate
   - bundle exec rails s -d
+
+after_success:
+  - bundle exec codeclimate-test-reporter
