@@ -1,0 +1,12 @@
+language: ruby
+
+rvm:
+  - 2.2.5
+
+env:
+  - DB=postgresql
+
+cache: bundler
+
+notifications:
+  email: false
