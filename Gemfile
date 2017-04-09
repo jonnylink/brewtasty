@@ -23,7 +23,8 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'valid_attribute'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda'
+  gem 'shoulda-matchers'
   gem 'dotenv-rails'
 end
 
