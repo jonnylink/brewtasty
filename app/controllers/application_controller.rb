@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
-  def authorize_user(object)
+  def check_user(object)
     if !current_user || (current_user.id != object.user_id && current_user.admin === false)
       render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
     end

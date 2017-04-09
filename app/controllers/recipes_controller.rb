@@ -1,8 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :remove]
-  before_action only: [:update, :edit, :remove] do
-    authorize_user(@recipe)
-  end
+  before_action -> {check_user(@recipe)}, only: [:update, :edit, :remove]
 
   def index
     @recipes = Recipe.where(active: 1)

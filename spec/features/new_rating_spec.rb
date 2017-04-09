@@ -49,4 +49,13 @@ feature "create rating" do
     expect(page).to have_content("sign in to rate this beer recipe.")
   end
 
+  scenario "rating can't be blank" do
+    user = FactoryGirl.create(:user)
+    beer = FactoryGirl.create(:recipe, user: user)
+    some_guy = FactoryGirl.create(:user)
+    sign_in_as some_guy
+    visit recipe_path(beer)
+    click_button "submit"
+    expect(page).to have_content("Rating can't be blank")
+  end
 end

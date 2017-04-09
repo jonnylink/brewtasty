@@ -1,8 +1,6 @@
 class RatingsController < ApplicationController
   before_action :set_rating, only: [:show, :edit, :update, :remove, :destroy]
-  before_action only: [:update, :edit, :destroy] do
-    authorize_user(@rating)
-  end
+  before_action -> {check_user(@rating)}, only: [:update, :edit, :remove]
 
   # def index
   #   @ratings = Rating.all
