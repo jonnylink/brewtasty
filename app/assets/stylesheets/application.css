@@ -15,14 +15,15 @@
  */
 
 html, body{
-  background-color:#e0d993;
-  background: linear-gradient(#eef59f, #fff);
+  background: #e9e6e6;
   font-family: 'Raleway', sans-serif;
-  margin:0;
+  height:100%;
   padding:0;
+  margin:0;
 }
 
-nav, h1, h2, h3{
+/*---- HEADERS ----*/
+h2, h3{
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   margin:0;
@@ -36,11 +37,11 @@ h2{
   text-transform: uppercase;
 }
 
+/*---- LINKS ----*/
 a, a:visited {
   color:#536878;
   text-decoration: none;
 }
-
 
 /*---- FORM ELEMENTS ----*/
 input {
@@ -63,11 +64,8 @@ button, #submit{
 button i, input i{
   color:#fff;
 }
-/*----  ----*/
-.click {
-  cursor: pointer;
-}
 
+/*---- NOTIFICATIONS ----*/
 .flash {
   background-color: #AAE5F4;
   color:#03337f;
@@ -79,65 +77,61 @@ button i, input i{
   padding: 1.5rem;
 }
 
-nav{
+.click {
+  cursor: pointer;
+}
+
+/*---- SITE HEADER ----*/
+header{
   background: #fff;
-  color: #767a7e;
+  color: #5b8dd0;
   margin:0;
-  padding:0.1rem 1rem;
+  padding:4rem 1rem 1rem 1rem;
 }
 h1{
-  float: left;
   font-size:3rem;
-  letter-spacing:-3px;
-  line-height: 4rem;
-  margin:0.1em 0;
+  font-weight: normal;
+  letter-spacing: -3px;
+  margin:0;
+  text-align: center;
 }
-nav i{
+header i{
   color:#87ade0;
 }
-#site_title:link, #site_title:visited{
-  color: #5b8dd0;
-}
-#nav_links{
-  padding:2rem 0 1rem 0;
+
+/*---- SITE NAVIGATION ----*/
+
+nav{
+  padding:3rem 1rem 1rem 1rem;
   text-align: right;
-  white-space: nowrap;
-  width:100%;
 }
 #search_form{
   display:inline-block;
 }
-
-#content{
-  background:#fff;
-  border:1px solid #5b8dd0;
-  border-radius:4px;
-  color:#36454f;
-  margin:1rem;
-  padding:1rem;
-}
-
 #back_link{
   display: block;
   margin-top:2rem;
 }
 
+/*---- SITE CONTENT ----*/
+#content{
+  color:#36454f;
+  margin:1rem;
+  padding:1rem;
+}
 #control_bar{
   margin:1rem 0 3rem 0;
 }
-
 .rating{
-  background: #ededed;
+  background: #fff;
   border-radius: 10px;
   color:#999;
   font-size:0.8rem;
   padding:0.1rem 0.4rem 0.2rem 0.4rem;
 }
-
 #rating_list{
   padding:0;
 }
-
 #rating_list .rating{
   list-style: none;
   margin-top:1rem;
@@ -146,6 +140,7 @@ nav i{
 .rating strong{
   font-size: 2rem;
 }
+#new_rating_area{display:none;}
 #creator{
   margin: 0 0 2.5rem 0;
 }
@@ -162,15 +157,16 @@ nav i{
 .amount{
   text-align: right;
 }
-#new_rating_area{display:none;}
 
+/*---- MEDIA QUERIES ----*/
 @media (min-width: 600px) {
+  header {
+    padding:8rem 2rem 1.5rem 2rem;
+  }
   h1{
-    font-size:4.5rem;
+    text-align: left;
   }
-  #nav_links{
-    padding:2rem 0;
-  }
+
   #brew_score, #add_recipe_link{
     float:right;
   }
