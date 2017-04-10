@@ -11,13 +11,13 @@
   </head>
   <body>
 
-    <header>
+    <nav>
       <h1><i class="fa fa-beer" aria-hidden="true"></i>&nbsp;<%= link_to "TastyBrew", root_path, id: "site_title" %></h1>
-      <div id="header_links">
+      <div id="nav_links">
         <%= render 'recipes/search' %> &nbsp;
         <%= render 'devise/menu/login_items' %>
       </div>
-    </header>
+    </nav>
 
     <% if flash[:alert] %>
       <div class="flash flash_error">

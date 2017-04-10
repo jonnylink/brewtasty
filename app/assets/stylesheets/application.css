@@ -15,19 +15,20 @@
  */
 
 html, body{
-  background: #c5ccd2;
+  background-color:#e0d993;
+  background: linear-gradient(#eef59f, #fff);
   font-family: 'Raleway', sans-serif;
   margin:0;
   padding:0;
 }
 
-header, h1, h2, h3{
+nav, h1, h2, h3{
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   margin:0;
 }
-h2, h3{
-  color:#4f4036;
+h1, h2, h3{
+  color:#5b8dd0;
 }
 h2{
   font-size:2rem;
@@ -36,14 +37,33 @@ h2{
 }
 
 a, a:visited {
-    color:#536878;
-    text-decoration: none;
+  color:#536878;
+  text-decoration: none;
 }
 
+
+/*---- FORM ELEMENTS ----*/
+input {
+  background:#fff;
+  border:1px solid #409bcf;
+  border-radius: 5px;
+  color:#5b8dd0;
+  font-size: 1.1rem;
+  padding:0.5rem 1rem;
+}
 button, #submit{
+  background:#409bcf;
+  border:1px solid #409bcf;
+  border-radius: 5px;
+  color:#fff;
+  font-size: 1.1rem;
+  padding:0.5rem 1rem;
   text-transform: lowercase;
 }
-
+button i, input i{
+  color:#fff;
+}
+/*----  ----*/
 .click {
   cursor: pointer;
 }
@@ -59,8 +79,8 @@ button, #submit{
   padding: 1.5rem;
 }
 
-header{
-  background: #b1b7bd;
+nav{
+  background: #fff;
   color: #767a7e;
   margin:0;
   padding:0.1rem 1rem;
@@ -72,11 +92,13 @@ h1{
   line-height: 4rem;
   margin:0.1em 0;
 }
-header i{
-  color:#e7eaed;
+nav i{
+  color:#87ade0;
 }
-#site_title:link, #site_title:visited{ color: #767a7e; }
-#header_links{
+#site_title:link, #site_title:visited{
+  color: #5b8dd0;
+}
+#nav_links{
   padding:2rem 0 1rem 0;
   text-align: right;
   white-space: nowrap;
@@ -85,14 +107,10 @@ header i{
 #search_form{
   display:inline-block;
 }
-#submit_search{
-  border:1px solid #999;
-  border-radius: 3px;
-  color: #767a7e;
-}
 
 #content{
   background:#fff;
+  border:1px solid #5b8dd0;
   border-radius:4px;
   color:#36454f;
   margin:1rem;
@@ -150,7 +168,7 @@ header i{
   h1{
     font-size:4.5rem;
   }
-  #header_links{
+  #nav_links{
     padding:2rem 0;
   }
   #brew_score, #add_recipe_link{
