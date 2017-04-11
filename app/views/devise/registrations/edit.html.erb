@@ -29,14 +29,14 @@
     </div>
 
     <div class="actions">
-      <%= f.submit "update" %>
+      <%= f.submit "update", class: "button" %>
     </div>
   <% end %>
 
   <br />
 
   <h3>Want to leave forever?</h3>
-  <%= button_to "delete my account", registration_path(resource_name), data: { confirm: "Really? This cannot be undone." }, method: :delete %>
+  <%= button_to "delete my account", registration_path(resource_name), class: "button", data: { confirm: "Really? This cannot be undone." }, method: :delete %>
 
   <%= link_to "Back", :back, id: "back_link" %>
 </div>

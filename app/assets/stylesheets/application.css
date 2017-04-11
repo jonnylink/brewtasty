@@ -17,63 +17,70 @@
 html, body{
   background: #e9e6e6;
   font-family: 'Raleway', sans-serif;
-  height:100%;
-  padding:0;
-  margin:0;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 /*---- HEADERS ----*/
 h2, h3{
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
-  margin:0;
+  margin: 0;
 }
 h1, h2, h3{
-  color:#5b8dd0;
+  color: #5b8dd0;
 }
 h2{
-  font-size:2rem;
-  letter-spacing:1px;
+  font-size: 2rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 /*---- LINKS ----*/
 a, a:visited {
-  color:#536878;
+  color: #536878;
   text-decoration: none;
 }
 
 /*---- FORM ELEMENTS ----*/
-input {
-  background:#fff;
-  border:1px solid #409bcf;
-  border-radius: 5px;
-  color:#5b8dd0;
-  font-size: 1.1rem;
-  padding:0.5rem 1rem;
+label {
+  margin: 0 0.5rem 0 0.5rem;
+  padding-top: 2rem;
 }
-button, #submit{
-  background:#409bcf;
-  border:1px solid #409bcf;
+input, textarea {
+  background: #fff;
+  border: 1px solid #409bcf;
   border-radius: 5px;
-  color:#fff;
+  color: #5b8dd0;
+  display: block;
   font-size: 1.1rem;
-  padding:0.5rem 1rem;
+  margin: 0.25rem;
+  padding: 0.35rem 0.65rem;
+  width: 1 00%;
+}
+button, #submit, .button{
+  background: #409bcf;
+  border: 1px solid #409bcf;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
   text-transform: lowercase;
 }
 button i, input i{
-  color:#fff;
+  color: #fff;
 }
 
 /*---- NOTIFICATIONS ----*/
 .flash {
   background-color: #AAE5F4;
-  color:#03337f;
+  color: #03337f;
   padding: 1rem;
 }
 .flash_error {
   background-color: #F4AAAA;
-  color:#B31414;
+  color: #B31414;
   padding: 1.5rem;
 }
 
@@ -85,62 +92,75 @@ button i, input i{
 header{
   background: #fff;
   color: #5b8dd0;
-  margin:0;
-  padding:4rem 1rem 1rem 1rem;
+  margin: 0;
+  padding: 4rem 1rem 1rem 1rem;
 }
 h1{
-  font-size:3rem;
+  font-size: 3rem;
   font-weight: normal;
   letter-spacing: -3px;
-  margin:0;
+  margin: 0;
   text-align: center;
 }
 header i{
-  color:#87ade0;
+  color: #87ade0;
 }
 
 /*---- SITE NAVIGATION ----*/
-
 nav{
-  padding:3rem 1rem 1rem 1rem;
+  margin: 0.5rem 1rem 0.5rem 1rem;
+}
+#nav_links_left{
+  display: inline-block;
+  text-align: left;
+  width:49.5%;
+}
+#nav_links_right{
+  display: inline-block;
   text-align: right;
+  width:49.5%;
 }
 #search_form{
-  display:inline-block;
+  display: inline-block;
 }
 #back_link{
   display: block;
-  margin-top:2rem;
+  margin-top: 2rem;
 }
 
 /*---- SITE CONTENT ----*/
 #content{
-  color:#36454f;
-  margin:1rem;
-  padding:1rem;
+  color: #36454f;
+  margin: 1rem;
+  padding: 1rem;
 }
 #control_bar{
-  margin:1rem 0 3rem 0;
+  margin: 1rem 0 3rem 0;
+}
+#new_rating input{
+  display: inline;
 }
 .rating{
   background: #fff;
   border-radius: 10px;
-  color:#999;
-  font-size:0.8rem;
-  padding:0.1rem 0.4rem 0.2rem 0.4rem;
+  color: #999;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.4rem 0.2rem 0.4rem;
 }
 #rating_list{
-  padding:0;
+  padding: 0;
 }
 #rating_list .rating{
   list-style: none;
-  margin-top:1rem;
-  padding:1rem;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 .rating strong{
   font-size: 2rem;
 }
-#new_rating_area{display:none;}
+#new_rating_area{
+  display: none;
+}
 #creator{
   margin: 0 0 2.5rem 0;
 }
@@ -148,8 +168,8 @@ nav{
   white-space: nowrap;
 }
 #ingredient_table{
-  margin:0.1rem 0 1rem 0;
-  padding:0 0 0 0.5rem;
+  margin: 0.1rem 0 1rem 0;
+  padding: 0 0 0 0.5rem;
 }
 .ingredient td{
   padding: 0.2rem 1rem;
@@ -161,13 +181,49 @@ nav{
 /*---- MEDIA QUERIES ----*/
 @media (min-width: 600px) {
   header {
-    padding:8rem 2rem 1.5rem 2rem;
+    padding: 8rem 2rem 1.5rem 2rem;
   }
   h1{
     text-align: left;
   }
 
   #brew_score, #add_recipe_link{
-    float:right;
+    float: right;
   }
+}
+
+/*  SECTIONS  */
+.section {
+	clear: both;
+	padding: 0px;
+	margin: 0px;
+}
+/*  COLUMN SETUP  */
+.col {
+	display: block;
+	float:left;
+	margin: 1% 0 1% 1.6%;
+}
+.col:first-child { margin-left: 0; }
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+/*  GRID OF TWO  */
+.span_2_of_2 {
+	width: 100%;
+}
+.span_1_of_2 {
+	width: 49.2%;
+}
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+@media only screen and (max-width: 480px) {
+	.col {
+		margin: 1% 0 1% 0%;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.span_2_of_2, .span_1_of_2 { width: 100%; }
 }
