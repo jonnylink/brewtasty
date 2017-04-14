@@ -18,7 +18,7 @@
     <tr class="ingredient">
       <td class="amount"><%= "#{recipe_ingredient.amount}#{recipe_ingredient.unit}" %></td>
       <td><%= recipe_ingredient.ingredient.name %></td>
-      <td><%= recipe_ingredient.ingredient.category %></td>
+      <td><%= IngredientCategory.find(recipe_ingredient.ingredient.category).name %></td>
     </tr>
   <% end %>
 </table>

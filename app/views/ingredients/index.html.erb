@@ -1,0 +1,9 @@
+<div id="content">
+  <h2>
+    Tasty ingredients
+  <% if current_user.admin === true %>
+    <span id="add_recipe_link">
+      <%= link_to "add ingredient", new_ingredient_path %>
+    </span>
+  <% end %>
+  </h2>

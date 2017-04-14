@@ -10,17 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213140605) do
+ActiveRecord::Schema.define(version: 20170412122820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "degrees", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_kinds", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredient_uses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.string   "category",               null: false
-    t.integer  "active",     default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                            null: false
+    t.integer  "active",              default: 1
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "ingredient_category"
+    t.integer  "origin"
+    t.integer  "kind"
+    t.string   "product_id"
+    t.integer  "alcohol_tolerance"
+    t.integer  "flocculation"
+    t.float    "color"
+    t.float    "ppg"
+    t.string   "alpha"
+    t.integer  "use"
+  end
+
+  create_table "origins", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -41,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170213140605) do
     t.integer  "active",        default: 1
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "time"
   end
 
   create_table "recipes", force: :cascade do |t|
