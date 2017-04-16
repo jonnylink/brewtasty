@@ -6,7 +6,7 @@ feature "user signs in" do
     sign_in_as user
 
     expect(page).to have_content("Welcome back")
-    expect(page).to have_content("sign out")
+    expect(page).to have_content(user.username)
   end
 
   scenario "specifies invalid email" do
@@ -19,7 +19,8 @@ feature "user signs in" do
     click_button "sign in"
 
     expect(page).to have_content("Invalid Email or password")
-    expect(page).to have_content("sign in")
+    expect(page).to have_link("account")
+    expect(page).to have_selector(:css, "#sign_up")
   end
 
   scenario "specifies invalid password" do
@@ -32,7 +33,8 @@ feature "user signs in" do
     click_button "sign in"
 
     expect(page).to have_content("Invalid Email or password")
-    expect(page).to have_content("sign in")
+    expect(page).to have_link("account")
+    expect(page).to have_selector(:css, "#sign_up")
   end
 end
 
@@ -43,6 +45,6 @@ feature "user signs out" do
     click_link "sign out"
 
     expect(page).to have_content("Adios!")
-    expect(page).to have_content("sign in")
+    expect(page).to have_link("account")
   end
 end

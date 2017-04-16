@@ -1,7 +1,7 @@
 <i class="fa fa-user-circle" aria-hidden="true"></i>
 <% if user_signed_in? %>
-  <%= link_to current_user.username, edit_user_registration_path, id: "user_accnt" %>
-<!--  <%= link_to 'sign out', destroy_user_session_path, method: :delete, id: "sign_out" %> -->
+  <%= link_to current_user.username, edit_user_registration_path, id: "user_accnt", title: "view account" %>
+  <%= link_to '[ <i class="fa fa-unlock"></i> ]'.html_safe, destroy_user_session_path, method: :delete, id: "sign_out", title: "sign out" %>
 <% else %>
-  <%= link_to 'account', new_user_session_path, id: "sign_in" %>
+  <%= link_to 'account [ <i class="fa fa-lock"></i> ]'.html_safe, new_user_session_path, id: "sign_in", title: "sign in or sign up!" %>
 <% end %>
