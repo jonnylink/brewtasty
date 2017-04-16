@@ -12,15 +12,10 @@ feature "update recipe" do
     fill_in "recipe_notes", with: "some notes"
     fill_in "recipe_batch_size", with: 5
     fill_in "recipe_boil_size", with: 6
-    fill_in "recipe_boil_time", with: 90
-    fill_in "recipe_original_gravity", with: 9.9
-    fill_in "recipe_final_gravity", with: 8.0
-    fill_in "recipe_alcohol_by_volume", with: 7.6
-    fill_in "recipe_bitterness", with: 3.5
-    fill_in "recipe_color", with: 12.2
-    fill_in "recipe_keg_temp", with: 52
-    fill_in "recipe_storage_temp", with: 50
-    fill_in "recipe_age_for", with: 23
+    fill_in "recipe_boil_time", with: 95
+    fill_in "recipe_boil_gravity", with: 1.08
+    fill_in "recipe_original_gravity", with: 1.09
+    fill_in "recipe_final_gravity", with: 1.06
     click_button "update Recipe"
 
     expect(page).to have_content("was updated!")

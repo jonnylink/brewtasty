@@ -89,9 +89,8 @@ ActiveRecord::Schema.define(version: 20170412122820) do
     t.integer  "boil_time"
     t.float    "original_gravity"
     t.float    "final_gravity"
-    t.float    "keg_temp"
-    t.float    "storage_temp"
     t.float    "boil_gravity"
+    t.float    "ferment_temp"
     t.index ["name"], name: "index_recipes_on_name", unique: true, using: :btree
   end
 

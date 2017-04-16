@@ -4,7 +4,10 @@ class AddAndUpdateIngredientsTablesUpdateRececipe < ActiveRecord::Migration[5.0]
     remove_column :recipes, :color
     remove_column :recipes, :age_for
     remove_column :recipes, :bitterness
+    remove_column :recipes, :storage_temp
+    remove_column :recipes, :keg_temp
     add_column :recipes, :boil_gravity, :float
+    add_column :recipes, :ferment_temp, :float
 
     change_column_null :recipe_ingredients, :amount, true
     change_column_null :recipe_ingredients, :unit, true
@@ -57,7 +60,10 @@ class AddAndUpdateIngredientsTablesUpdateRececipe < ActiveRecord::Migration[5.0]
     add_column :recipes, :color, :float
     add_column :recipes, :age_for, :float
     add_column :recipes, :bitterness, :float
+    add_column :recipes, :storage_temp, :float
+    add_column :recipes, :keg_temp, :float
     remove_column :recipes, :boil_gravity
+    remove_column :recipes, :ferment_temp
 
     change_column_null :recipe_ingredients, :amount, false
     change_column_null :recipe_ingredients, :unit, false

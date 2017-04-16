@@ -7,22 +7,14 @@
   <%= f.text_field :boil_size, placeholder: "gal.", title: "Gallons" %>
   <%= f.label :boil_time %>:
   <%= f.text_field :boil_time, placeholder: "min.", title: "Minutes" %>
+  <%= f.label :boil_gravity %>:
+  <%= f.text_field :boil_gravity, placeholder: "sg", title: "SGs" %>
   <%= f.label :original_gravity %>:
   <%= f.text_field :original_gravity, placeholder: "sg", title: "SGs" %>
   <%= f.label :final_gravity %>:
   <%= f.text_field :final_gravity, placeholder: "sg", title: "SGs" %>
-  <%= f.label :alcohol_by_volume %>:
-  <%= f.text_field :alcohol_by_volume, placeholder: "%", title: "ABV%" %>
-  <%= f.label :bitterness %>:
-  <%= f.text_field :bitterness, placeholder: "IBU", title: "IBUs" %>
-  <%= f.label :color %>:
-  <%= f.text_field :color, placeholder: "srm", title: "SRMs" %>
-  <%= f.label :keg_temp %>:
-  <%= f.text_field :keg_temp, placeholder: "&deg;F".html_safe, title: "Degrees Fahrenheit" %>
-  <%= f.label :storage_temp %>:
-  <%= f.text_field :storage_temp, placeholder: "&deg;F".html_safe, title: "Degrees Fahrenheit" %>
-  <%= f.label :age_for %>:
-  <%= f.text_field :age_for, placeholder: "days", title: "Days" %>
+  <%= f.label :ferment_temp %>:
+  <%= f.text_field :ferment_temp, placeholder: "&deg;F".html_safe, title: "Degrees Fahrenheit" %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit id: "submit" %>
