@@ -15,45 +15,39 @@ ActiveRecord::Schema.define(version: 20170412122820) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "degrees", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "ingredient_categories", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredient_kinds", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "ingredient_uses", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name",                            null: false
-    t.integer  "active",              default: 1
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.integer  "ingredient_category"
-    t.integer  "origin"
-    t.integer  "kind"
+    t.string   "name",                             null: false
+    t.integer  "active",               default: 1
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "category_id"
+    t.integer  "origin_id"
+    t.integer  "kind_id"
     t.string   "product_id"
-    t.integer  "alcohol_tolerance"
-    t.integer  "flocculation"
+    t.integer  "alcohol_tolerance_id"
+    t.integer  "flocculation_id"
     t.float    "color"
     t.float    "ppg"
     t.string   "alpha"
-    t.integer  "use"
+    t.integer  "use_id"
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "origins", force: :cascade do |t|
@@ -75,8 +69,8 @@ ActiveRecord::Schema.define(version: 20170412122820) do
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer  "recipe_id",                 null: false
     t.integer  "ingredient_id",             null: false
-    t.float    "amount",                    null: false
-    t.string   "unit",                      null: false
+    t.float    "amount"
+    t.string   "unit"
     t.integer  "active",        default: 1
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
@@ -124,6 +118,12 @@ ActiveRecord::Schema.define(version: 20170412122820) do
     t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "uses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

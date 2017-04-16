@@ -1,9 +1,57 @@
 <div id="content">
   <h2>
     Tasty ingredients
-  <% if current_user.admin === true %>
-    <span id="add_recipe_link">
+  <% if !current_user.nil? && current_user.admin === true %>
+    <--<span id="add_ingredient_link">
       <%= link_to "add ingredient", new_ingredient_path %>
-    </span>
+    </span>-->
   <% end %>
   </h2>
+
+  <table id="ingredient_list">
+  <% @ingredients.each do |ingredient| %>
+    <tr>
+      <td>
+        <%= link_to ingredient.name, ingredient_path(ingredient), class: "ingredient" %>
+      </td>
+
+      <% if ingredient.kind %>
+        <td><%= ingredient.kind.name %></td>
+      <% end %>
+
+      <% if ingredient.use %>
+        <td><%= ingredient.use.name %></td>
+      <% end %>
+
+      <% if ingredient.origin %>
+        <td><%= ingredient.origin.name %></td>
+      <% end %>
+
+      <% if ingredient.product_id %>
+        <td><%= ingredient.product_id %></td>
+      <% end %>
+
+      <% if ingredient.alcohol_tolerance_id %>
+        <td><%= ingredient.alcohol_tolerance.name %></td>
+      <% end %>
+
+      <% if ingredient.flocculation_id %>
+        <td><%= ingredient.flocculation.name %></td>
+      <% end %>
+
+      <% if ingredient.color %>
+        <td><%= ingredient.color %> &deg;L</td>
+      <% end %>
+
+      <% if ingredient.ppg %>
+        <td><%= ingredient.ppg %></td>
+      <% end %>
+
+      <% if ingredient.alpha %>
+        <td><%= ingredient.alpha %></td>
+      <% end %>
+
+    </tr>
+  <% end %>
+</table>
+</div>

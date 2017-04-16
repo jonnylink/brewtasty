@@ -1,21 +1,24 @@
 class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5.0]
   def up
+    change_column_null :recipe_ingredients, :amount, true
+    change_column_null :recipe_ingredients, :unit, true
+
     remove_column :ingredients, :category
 
-    add_column :ingredients, :ingredient_category, :integer
-    add_column :ingredients, :origin, :integer
-    add_column :ingredients, :kind, :integer
+    add_column :ingredients, :category_id, :integer
+    add_column :ingredients, :origin_id, :integer
+    add_column :ingredients, :kind_id, :integer
     add_column :ingredients, :product_id, :string
-    add_column :ingredients, :alcohol_tolerance, :integer
-    add_column :ingredients, :flocculation, :integer
+    add_column :ingredients, :alcohol_tolerance_id, :integer
+    add_column :ingredients, :flocculation_id, :integer
     add_column :ingredients, :color, :float
     add_column :ingredients, :ppg, :float
     add_column :ingredients, :alpha, :string
-    add_column :ingredients, :use, :integer
+    add_column :ingredients, :use_id, :integer
 
     add_column :recipe_ingredients, :time, :integer
 
-    create_table :ingredient_categories do |t|
+    create_table :categories do |t|
       t.string :name, null: false
       t.timestamps
     end
@@ -25,12 +28,12 @@ class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5
       t.timestamps
     end
 
-    create_table :ingredient_kinds do |t|
+    create_table :kinds do |t|
       t.string :name, null: false
       t.timestamps
     end
 
-    create_table :ingredient_uses do |t|
+    create_table :uses do |t|
       t.string :name, null: false
       t.timestamps
     end
@@ -44,24 +47,28 @@ class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5
   end
 
   def down
+    change_column_null :recipe_ingredients, :amount, false
+    change_column_null :recipe_ingredients, :unit, false
+
     add_column :ingredients, :category, :string
 
-    remove_column :ingredients, :origin
-    remove_column :ingredients, :kind
+    remove_column :ingredients, :category_id
+    remove_column :ingredients, :origin_id
+    remove_column :ingredients, :kind_id
     remove_column :ingredients, :product_id
-    remove_column :ingredients, :alcohol_tolerance
-    remove_column :ingredients, :flocculation
+    remove_column :ingredients, :alcohol_tolerance_id
+    remove_column :ingredients, :flocculation_id
     remove_column :ingredients, :color
     remove_column :ingredients, :ppg
     remove_column :ingredients, :alpha
-    remove_column :ingredients, :use
+    remove_column :ingredients, :use_id
 
     remove_column :recipe_ingredients, :time
 
-    drop_table :ingredient_categories
+    drop_table :categories
     drop_table :origins
-    drop_table :ingredient_kinds
-    drop_table :ingredient_uses
+    drop_table :kinds
+    drop_table :uses
     drop_table :degrees
   end
 end

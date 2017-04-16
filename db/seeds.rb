@@ -1,10 +1,13 @@
 require 'csv'
 
+puts "Seeding tables"
+puts "*----- creating ingredient ancillary tables"
+
 degrees = ['Low', 'Medium-Low', 'Medium', 'Medium-High', 'High', 'Very High', 'Variable']
 degrees.each { |degree_name| Degree.create(name: degree_name) }
 
 ingredient_categories = ['Fermentables', 'Hops', 'Yeasts', 'Others']
-ingredient_categories.each { |ingredient_category| IngredientCategory.create(name: ingredient_category) }
+ingredient_categories.each { |ingredient_category| Category.create(name: ingredient_category) }
 
 ingredient_kinds = [
   'Acidulated malt (Grain)',
@@ -12,6 +15,7 @@ ingredient_kinds = [
   'Crystal malt (Grain)',
   'Dry',
   'Extract (Dry Extract)',
+  'Extract (Liquid Extract)',
   'Fining',
   'Flavor',
   'Fruit',
@@ -22,12 +26,17 @@ ingredient_kinds = [
   'Other',
   'Other (Grain)',
   'Pellet',
+  'Plug',
+  'Raw',
   'Raw (Adjunct)',
+  'Raw (Dry Extract)',
+  'Raw (Grain)',
   'Roasted malt (Grain)',
+  'Sugar',
   'Spice',
   'Water Agt'
 ]
-ingredient_kinds.each { |ingredient_kind| IngredientKind.create(name: ingredient_kind) }
+ingredient_kinds.each { |ingredient_kind| Kind.create(name: ingredient_kind) }
 
 ingredient_uses = [
   'Aroma',
@@ -41,7 +50,7 @@ ingredient_uses = [
   'Primary',
   'Secondary'
 ]
-ingredient_uses.each { |ingredient_use| IngredientUse.create(name: ingredient_use) }
+ingredient_uses.each { |ingredient_use| Use.create(name: ingredient_use) }
 
 origins = [
   'America',
@@ -60,17 +69,21 @@ origins = [
 ]
 origins.each { |origin_name| Origin.create(name: origin_name) }
 
+puts "**---- adding ingredients"
+
 csv_ingredients = File.read(Rails.root.join('db', 'seeds', 'ingredients.csv'))
 ingredients = CSV.parse(csv_ingredients, :headers => true)
-ingredients.each do |ingredient|
+
+ingredients.each_with_index do |ingredient, index|
+  puts "added #{index+1}/3189 - #{ingredient['name']}"
   the_ingredient = Ingredient.create(
     name: ingredient['name'],
-    ingredient_category: (ingredient['category'].blank? ? '' : IngredientCategory.where(name: ingredient['category']).first.id),
-    origin:  (ingredient['origin'].blank? ? '' : Origin.where(name: ingredient['origin']).first.id),
-    kind: (ingredient['type'].blank? ? '' : IngredientType.where(name: ingredient['type']).first.id),
-    use: (ingredient['use'].blank? ? '' : IngredientUse.where(name: ingredient['use']).first.id),
-    alcohol_tolerance: (ingredient['alcohol_tolerance'].blank? ? '' : Degree.where(name: ingredient['alcohol_tolerance']).first.id),
-    flocculation: (ingredient['flocculation'].blank? ? '' : Degree.where(name: ingredient['flocculation']).first.id),
+    category_id: (ingredient['category'].blank? ? '' : Category.where(name: ingredient['category']).first.id),
+    origin_id:  (ingredient['origin'].blank? ? '' : Origin.where(name: ingredient['origin']).first.id),
+    kind_id: (ingredient['kind'].blank? ? '' : Kind.where(name: ingredient['kind']).first.id),
+    use_id: (ingredient['use'].blank? ? '' : Use.where(name: ingredient['use']).first.id),
+    alcohol_tolerance_id: (ingredient['alcohol_tolerance'].blank? ? '' : Degree.where(name: ingredient['alcohol_tolerance']).first.id),
+    flocculation_id: (ingredient['flocculation'].blank? ? '' : Degree.where(name: ingredient['flocculation']).first.id),
     color: (ingredient['color'].blank? ? '' : ingredient['color']),
     ppg: (ingredient['ppg'].blank? ? '' : ingredient['ppg']),
     alpha: (ingredient['alpha'].blank? ? '' : ingredient['alpha']),
@@ -78,11 +91,25 @@ ingredients.each do |ingredient|
   )
 end
 
+puts "***--- creating test users"
+
 recipe_user = User.create(
   username: "jonlink",
   email: "jonlink@email.com",
   password: "testtest"
 )
+rating_user = User.create(
+  username: "brylink",
+  email: "brylink@email.com",
+  password: "testtest"
+)
+rating_user2 = User.create(
+  username: "roblink",
+  email: "roblink@email.com",
+  password: "testtest"
+)
+
+puts "****-- creating test recipe"
 
 example_recipe = Recipe.create(
    user_id: recipe_user.id,
@@ -95,6 +122,8 @@ example_recipe = Recipe.create(
    boil_time: 90,
    batch_size: 5.5,
 )
+
+puts "*****- adding ingredients to test recipe"
 
 ingredient_list = [
   {name: 'Liquid Malt Extract - Light', amount: 3.3, unit: 'lb', time: ''},
@@ -120,17 +149,7 @@ ingredient_list.each do |ingredient|
   )
 end
 
-rating_user = User.create(
-  username: "brylink",
-  email: "brylink@email.com",
-  password: "testtest"
-)
-
-rating_user2 = User.create(
-  username: "roblink",
-  email: "roblink@email.com",
-  password: "testtest"
-)
+puts "****** creating test recipe ratings"
 
 Rating.create(
   user_id: rating_user.id,
