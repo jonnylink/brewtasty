@@ -1,5 +1,11 @@
-class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5.0]
+class AddAndUpdateIngredientsTablesUpdateRececipe < ActiveRecord::Migration[5.0]
   def up
+    remove_column :recipes, :alcohol_by_volume
+    remove_column :recipes, :color
+    remove_column :recipes, :age_for
+    remove_column :recipes, :bitterness
+    add_column :recipes, :boil_gravity, :float
+
     change_column_null :recipe_ingredients, :amount, true
     change_column_null :recipe_ingredients, :unit, true
 
@@ -13,7 +19,7 @@ class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5
     add_column :ingredients, :flocculation_id, :integer
     add_column :ingredients, :color, :float
     add_column :ingredients, :ppg, :float
-    add_column :ingredients, :alpha, :string
+    add_column :ingredients, :alpha, :float
     add_column :ingredients, :use_id, :integer
 
     add_column :recipe_ingredients, :time, :integer
@@ -47,6 +53,12 @@ class AddColumnsToIngredientsAndTablesForIngredients < ActiveRecord::Migration[5
   end
 
   def down
+    add_column :recipes, :alcohol_by_volume, :float
+    add_column :recipes, :color, :float
+    add_column :recipes, :age_for, :float
+    add_column :recipes, :bitterness, :float
+    remove_column :recipes, :boil_gravity
+
     change_column_null :recipe_ingredients, :amount, false
     change_column_null :recipe_ingredients, :unit, false
 

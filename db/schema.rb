@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170412122820) do
     t.integer  "flocculation_id"
     t.float    "color"
     t.float    "ppg"
-    t.string   "alpha"
+    t.float    "alpha"
     t.integer  "use_id"
   end
 
@@ -78,23 +78,20 @@ ActiveRecord::Schema.define(version: 20170412122820) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer  "user_id",                       null: false
-    t.string   "name",                          null: false
+    t.integer  "user_id",                      null: false
+    t.string   "name",                         null: false
     t.text     "notes"
-    t.integer  "active",            default: 1
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "active",           default: 1
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.float    "batch_size"
     t.float    "boil_size"
     t.integer  "boil_time"
     t.float    "original_gravity"
     t.float    "final_gravity"
-    t.float    "alcohol_by_volume"
-    t.float    "bitterness"
-    t.float    "color"
     t.float    "keg_temp"
     t.float    "storage_temp"
-    t.float    "age_for"
+    t.float    "boil_gravity"
     t.index ["name"], name: "index_recipes_on_name", unique: true, using: :btree
   end
 

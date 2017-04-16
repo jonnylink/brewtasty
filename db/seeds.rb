@@ -74,8 +74,9 @@ puts "**---- adding ingredients"
 csv_ingredients = File.read(Rails.root.join('db', 'seeds', 'ingredients.csv'))
 ingredients = CSV.parse(csv_ingredients, :headers => true)
 
+total = ingredients.count
 ingredients.each_with_index do |ingredient, index|
-  puts "added #{index+1}/3189 - #{ingredient['name']}"
+  puts "added #{index+1}/#{total} - #{ingredient['name']}"
   the_ingredient = Ingredient.create(
     name: ingredient['name'],
     category_id: (ingredient['category'].blank? ? '' : Category.where(name: ingredient['category']).first.id),
@@ -114,30 +115,26 @@ puts "****-- creating test recipe"
 example_recipe = Recipe.create(
    user_id: recipe_user.id,
    name: "Russian Imperial Stout",
-   original_gravity: 1.102,
-   final_gravity: 1.023,
-   alcohol_by_volume: 10.37,
-   bitterness: 89.5,
-   color: 62.25,
+   boil_gravity: 1.074,
+   original_gravity: 1.096,
+   final_gravity: 1.02,
    boil_time: 90,
-   batch_size: 5.5,
+   batch_size: 5,
 )
 
 puts "*****- adding ingredients to test recipe"
 
 ingredient_list = [
-  {name: 'Liquid Malt Extract - Light', amount: 3.3, unit: 'lb', time: ''},
-  {name: 'Liquid Malt Extract - Munich', amount: 3.3, unit: 'lb', time: ''},
-  {name: 'Liquid Malt Extract - Light', amount: 3.3, unit: 'lb', time: ''},
-  {name: 'Chocolate', amount: 0.75, unit: 'lb', time: ''},
-  {name: 'Roasted Barley', amount: 0.75, unit: 'lb', time: ''},
-  {name: 'Caramel / Crystal 60L', amount: 1, unit: 'lb', time: ''},
-  {name: 'Carapils (Dextrine Malt)', amount: 0.5, unit: 'lb', time: ''},
-  {name: "Brewer's Gold", amount: 1, unit: 'oz', time: 60},
-  {name: 'Willamette', amount: 0.2, unit: 'oz', time: 60},
-  {name: 'Willamette', amount: 1.2, unit: 'oz', time: 10},
-  {name: 'Willamette', amount: 0.5, unit: 'oz', time: 3},
-  {name: 'California Ale Yeast', amount: '', unit: '', time: ''}
+  {name: 'Pale 2-Row', amount: 13, unit: 'lb', time: ''},
+  {name: 'Flaked Oats', amount: 2, unit: 'lb', time: ''},
+  {name: 'Chocolate', amount: 1, unit: 'lb', time: ''},
+  {name: 'Black Patent', amount: 1, unit: 'lb', time: ''},
+  {name: 'Roasted Barley', amount: 1, unit: 'lb', time: ''},
+  {name: 'Caramel / Crystal 15L', amount: 1, unit: 'lb', time: ''},
+  {name: "Carapils", amount: 0.5, unit: 'lb', time: ''},
+  {name: 'Willamette', amount: 4, unit: 'oz', time: 90},
+  {name: 'Cacoa Nibs', amount: 4, unit: 'oz', time: 15},
+  {name: 'San Diego Super Yeast', amount: '', unit: '', time: ''}
 ]
 ingredient_list.each do |ingredient|
   RecipeIngredient.create(
