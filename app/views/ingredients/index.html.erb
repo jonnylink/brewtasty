@@ -39,15 +39,15 @@
         <td><%= ingredient.flocculation.name %></td>
       <% end %>
 
-      <% if ingredient.color %>
+      <% if !ingredient.color.blank? %>
         <td><%= ingredient.color %> &deg;L</td>
       <% end %>
 
-      <% if ingredient.ppg %>
+      <% if !ingredient.ppg.blank? %>
         <td><%= ingredient.ppg %></td>
       <% end %>
 
-      <% if ingredient.alpha %>
+      <% if !ingredient.alpha.blank? %>
         <td><%= ingredient.alpha %></td>
       <% end %>
 

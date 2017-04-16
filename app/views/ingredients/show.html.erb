@@ -1,0 +1,120 @@
+<div id="content">
+  <h2>
+    <%= @ingredient.name %>
+  <% if !current_user.nil? && current_user.admin === true %>
+    <--<span id="add_ingredient_link">
+      <%= link_to "add ingredient", new_ingredient_path %>
+    </span>-->
+  <% end %>
+  </h2>
+
+  <table id="ingredient">
+    <tr>
+      <th>
+        Category
+      </th>
+      <td>
+        <%= @ingredient.category.name %>
+      </td>
+    </tr>
+
+    <% if @ingredient.kind %>
+      <tr>
+        <th>
+          Kind
+        </th>
+        <td>
+          <%= @ingredient.kind.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @ingredient.use %>
+      <tr>
+        <th>
+          Use
+        </th>
+        <td>
+          <%= @ingredient.use.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @ingredient.origin %>
+      <tr>
+        <th>
+          Origin
+        </th>
+        <td>
+          <%= @ingredient.origin.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@ingredient.product_id.blank? %>
+      <tr>
+        <th>
+          Product ID
+        </th>
+        <td>
+          <%= @ingredient.product_id %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @ingredient.alcohol_tolerance_id %>
+      <tr>
+        <th>
+          Alcohol Tolerance
+        </th>
+        <td>
+          <%= @ingredient.alcohol_tolerance.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @ingredient.flocculation_id %>
+      <tr>
+        <th>
+          Flocculation
+        </th>
+        <td>
+          <%= @ingredient.flocculation.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@ingredient.color.blank? %>
+      <tr>
+        <th>
+          Color
+        </th>
+        <td>
+          <%= @ingredient.color %> &deg;L
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@ingredient.ppg.blank? %>
+      <tr>
+        <th>
+          PPG
+        </th>
+        <td>
+          <%= @ingredient.ppg %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@ingredient.alpha.blank? %>
+      <tr>
+        <th>
+          Alpha
+        </th>
+        <td>
+          <%= @ingredient.alpha %>
+        </td>
+      </tr>
+    <% end %>
+</table>
+</div>
