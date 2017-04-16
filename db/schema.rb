@@ -10,17 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213140605) do
+ActiveRecord::Schema.define(version: 20170412122820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name",                   null: false
-    t.string   "category",               null: false
-    t.integer  "active",     default: 1
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",                             null: false
+    t.integer  "active",               default: 1
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.integer  "category_id"
+    t.integer  "origin_id"
+    t.integer  "kind_id"
+    t.string   "product_id"
+    t.integer  "alcohol_tolerance_id"
+    t.integer  "flocculation_id"
+    t.float    "color"
+    t.float    "ppg"
+    t.float    "alpha"
+    t.integer  "use_id"
+  end
+
+  create_table "kinds", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "origins", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -36,31 +69,28 @@ ActiveRecord::Schema.define(version: 20170213140605) do
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer  "recipe_id",                 null: false
     t.integer  "ingredient_id",             null: false
-    t.float    "amount",                    null: false
-    t.string   "unit",                      null: false
+    t.float    "amount"
+    t.string   "unit"
     t.integer  "active",        default: 1
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "time"
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer  "user_id",                       null: false
-    t.string   "name",                          null: false
+    t.integer  "user_id",                      null: false
+    t.string   "name",                         null: false
     t.text     "notes"
-    t.integer  "active",            default: 1
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "active",           default: 1
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.float    "batch_size"
     t.float    "boil_size"
     t.integer  "boil_time"
     t.float    "original_gravity"
     t.float    "final_gravity"
-    t.float    "alcohol_by_volume"
-    t.float    "bitterness"
-    t.float    "color"
-    t.float    "keg_temp"
-    t.float    "storage_temp"
-    t.float    "age_for"
+    t.float    "boil_gravity"
+    t.float    "ferment_temp"
     t.index ["name"], name: "index_recipes_on_name", unique: true, using: :btree
   end
 
@@ -84,6 +114,12 @@ ActiveRecord::Schema.define(version: 20170213140605) do
     t.boolean  "admin",                  default: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "uses", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
