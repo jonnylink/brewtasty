@@ -79,7 +79,7 @@
 
   <h3>People are saying&hellip;</h3>
 
-  <p class="click" onclick="document.getElementById('new_rating_area').style.display='block'">say something <i class="fa fa-comment" aria-hidden="true"></i></p>
+  <p class="click" onclick="document.getElementById('new_rating_area').style.display='block'"><i class="fa fa-comments-o fa-flip-horizontal"></i> say something</p>
   <div id="new_rating_area">
     <% if current_user && current_user.id != @recipe.user_id %>
       <%= render 'ratings/form', rating: @rating %>

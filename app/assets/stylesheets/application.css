@@ -53,12 +53,21 @@ input, textarea {
   border: 1px solid #409bcf;
   border-radius: 5px;
   color: #5b8dd0;
-  display: block;
   font-size: 1.1rem;
   margin: 0.25rem;
   padding: 0.35rem 0.65rem;
   width: 1 00%;
 }
+label {
+  color: #B4886B;
+  font-weight: bold;
+}
+label:after { content: ": " }
+.long_form input, .long_form textarea {
+  width:100%;
+  margin:0.5rem 0;
+}
+
 button, #submit, .button{
   background: #409bcf;
   border: 1px solid #409bcf;
@@ -171,6 +180,11 @@ nav{
   margin: 0.1rem 0 1rem 0;
   padding: 0 0 0 0.5rem;
 }
+th{
+  font-weight:bold;
+  text-align: right;
+  padding-right: 0.5rem
+}
 .ingredient td{
   padding: 0.2rem 1rem;
 }
@@ -186,8 +200,13 @@ nav{
   h1{
     text-align: left;
   }
-
-  #brew_score, #add_recipe_link{
+  .long_form input, .long_form textarea {
+    width: 20rem;
+  }
+  #submit{
+    width:10rem;
+  }
+  #brew_score, #add_link{
     float: right;
   }
 }

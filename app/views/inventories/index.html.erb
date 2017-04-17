@@ -2,7 +2,7 @@
   <h2>
     Tasty Inventory
   <% if current_user %>
-    <span id="add_inventory_link">
+    <span id="add_link">
       <%= link_to "add inventory", new_inventory_path %>
     </span>
   <% end %>
@@ -11,7 +11,7 @@
   <ul id="inventory_list">
   <% @inventories.each do |inventory| %>
     <li>
-      <%= inventory.amount %><%= inventory.unit.name %> - <%= link_to inventory.ingredient.name, inventory_path(inventory), class: "inventory" %>
+      <%= inventory.amount %> <%= inventory.unit.name %> - <%= link_to inventory.ingredient.name, inventory_path(inventory), class: "inventory" %>
     </li>
   <% end %>
   </ul>

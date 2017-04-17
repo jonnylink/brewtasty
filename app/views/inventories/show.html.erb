@@ -1,0 +1,122 @@
+<div id="content">
+  <h2>
+    <%= @inventory.amount %>
+    <%= @inventory.unit.name %>
+    <%= @inventory.ingredient.name %>
+  <% if !current_user.nil? && current_user.admin === true %>
+    <span id="add_link">
+      <%= link_to "add ingredient", new_ingredient_path %>
+    </span>
+  <% end %>
+  </h2>
+
+  <table id="ingredient">
+    <tr>
+      <th>
+        Category
+      </th>
+      <td>
+        <%= @inventory.ingredient.category.name %>
+      </td>
+    </tr>
+
+    <% if @inventory.ingredient.kind %>
+      <tr>
+        <th>
+          Kind
+        </th>
+        <td>
+          <%= @inventory.ingredient.kind.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @inventory.ingredient.use %>
+      <tr>
+        <th>
+          Use
+        </th>
+        <td>
+          <%= @inventory.ingredient.use.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @inventory.ingredient.origin %>
+      <tr>
+        <th>
+          Origin
+        </th>
+        <td>
+          <%= @inventory.ingredient.origin.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@inventory.ingredient.product_id.blank? %>
+      <tr>
+        <th>
+          Product ID
+        </th>
+        <td>
+          <%= @inventory.ingredient.product_id %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @inventory.ingredient.alcohol_tolerance_id %>
+      <tr>
+        <th>
+          Alcohol Tolerance
+        </th>
+        <td>
+          <%= @inventory.ingredient.alcohol_tolerance.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if @inventory.ingredient.flocculation_id %>
+      <tr>
+        <th>
+          Flocculation
+        </th>
+        <td>
+          <%= @inventory.ingredient.flocculation.name %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@inventory.ingredient.color.blank? %>
+      <tr>
+        <th>
+          Color
+        </th>
+        <td>
+          <%= @inventory.ingredient.color %> &deg;L
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@inventory.ingredient.ppg.blank? %>
+      <tr>
+        <th>
+          PPG
+        </th>
+        <td>
+          <%= @inventory.ingredient.ppg %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if !@inventory.ingredient.alpha.blank? %>
+      <tr>
+        <th>
+          Alpha
+        </th>
+        <td>
+          <%= @inventory.ingredient.alpha %>
+        </td>
+      </tr>
+    <% end %>
+</table>
+</div>
