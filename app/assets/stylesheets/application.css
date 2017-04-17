@@ -45,6 +45,8 @@ a, a:visited {
 
 /*---- FORM ELEMENTS ----*/
 label {
+  color: #B4886B;
+  font-weight: bold;
   margin: 0 0.5rem 0 0.5rem;
   padding-top: 2rem;
 }
@@ -57,10 +59,6 @@ input, textarea {
   margin: 0.25rem;
   padding: 0.35rem 0.65rem;
   width: 100%;
-}
-label {
-  color: #B4886B;
-  font-weight: bold;
 }
 .long_form input, .long_form textarea {
   width:100%;

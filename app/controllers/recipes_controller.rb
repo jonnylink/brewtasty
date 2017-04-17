@@ -18,7 +18,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "#{recipe_params[:name]} was updated!"
       redirect_to recipe_path(@recipe)
     else
-      flash[:alert] = "Recipe not updated! #{@recipe.errors.full_messages.join(". ")}"
+      flash.now[:alert] = "Recipe not updated! #{@recipe.errors.full_messages.join(". ")}"
       render :edit
     end
   end
@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "Recipe added!"
       redirect_to root_path
     else
-      flash[:alert] = "Recipe not added. #{@recipe.errors.full_messages.join(". ")}"
+      flash.now[:alert] = "Recipe not added. #{@recipe.errors.full_messages.join(". ")}"
       render :new
     end
   end
@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
       flash[:notice] = "#{@recipe.name} was deleted."
       redirect_to root_path
     else
-      flash[:alert] = "#{@recipe.name} could not be deleted. #{@recipe.errors.full_messages.join(". ")}"
+      flash.now[:alert] = "#{@recipe.name} could not be deleted. #{@recipe.errors.full_messages.join(". ")}"
       render :show
     end
   end

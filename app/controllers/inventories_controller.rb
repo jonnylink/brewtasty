@@ -20,7 +20,7 @@ class InventoriesController < ApplicationController
       flash[:notice] = "Inventory added!"
       redirect_to inventories_path
     else
-      flash[:alert] = "Inventory not added. #{@inventory.errors.full_messages.join(". ")}"
+      flash.now[:alert] = "Inventory not added. #{@inventory.errors.full_messages.join(". ")}"
       render :new
     end
   end
@@ -33,7 +33,7 @@ class InventoriesController < ApplicationController
       flash[:notice] = "Your inventory was updated!"
       redirect_to inventory_path(@inventory)
     else
-      flash[:alert] = "Inventory not updated! #{@inventory.errors.full_messages.join(". ")}"
+      flash.now[:alert] = "Inventory not updated! #{@inventory.errors.full_messages.join(". ")}"
       render :show
     end
   end
