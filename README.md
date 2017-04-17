@@ -20,31 +20,31 @@ TastyBrew will be an inventory tracking and recipe suggestion tool for craft and
 --------------------
 1. Get the code. Clone this git repository and check out the latest release:
 
-  ```bash
-  git clone https://github.com/jonnylink/tastybrew.git
-  cd sharetribe
-  git checkout latest
-  ```
+```bash
+git clone https://github.com/jonnylink/tastybrew.git
+cd sharetribe
+git checkout latest
+```
 
 2. Install the required gems by running the following command in the project root directory:
 
-  ```bash
-  bundle install
-  ```
+```bash
+bundle install
+```
 
 3. Create, migrate, and seed the database:
 
-  ```bash
-  bundle exec rake db:create
-  bundle exec rake db:migrate
-  bundle exec rake db:seed
-  ```
+```bash
+bundle exec rake db:create
+bundle exec rake db:migrate
+bundle exec rake db:seed
+```
 
   4. Run the tests:
 
-    ```bash
-    bundle exec rake
-    ```
+```bash
+bundle exec rake
+```
 
   ### What it Comes With
   --------------------
