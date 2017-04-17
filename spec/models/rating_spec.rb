@@ -1,4 +1,13 @@
-RSpec.describe Rating do
+require 'spec_helper'
+
+describe Rating do
+  it "has a valid factory" do
+    maker = FactoryGirl.create(:user)
+    rater = FactoryGirl.create(:user)
+    recipe = FactoryGirl.create(:recipe, user: maker)
+    expect(FactoryGirl.create(:rating, recipe: recipe, user: rater)).to be_valid
+  end
+
   it {expect validate_presence_of(:user_id)}
   it {expect validate_presence_of(:recipe_id)}
   it {expect validate_presence_of(:rating)}
