@@ -1,6 +1,6 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :remove]
-  before_action -> {check_user(@inventory)}, only: [:update, :remove]
+  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  before_action -> {check_user(@inventory)}, only: [:update, :destroy]
   before_action :signed_in, only: [:index, :show, :edit, :new, :create]
 
   def index
@@ -30,7 +30,7 @@ class InventoriesController < ApplicationController
 
   def update
     if @inventory.update(inventory_params)
-      flash[:notice] = "#{inventory_params[:name]} was updated!"
+      flash[:notice] = "Your inventory was updated!"
       redirect_to inventory_path(@inventory)
     else
       flash[:alert] = "Inventory not updated! #{@inventory.errors.full_messages.join(". ")}"
@@ -38,14 +38,9 @@ class InventoriesController < ApplicationController
     end
   end
 
-  def remove
-    if @inventory.update(active:0)
-      flash[:notice] = "#{@inventory.name} was deleted."
-      redirect_to inventories_path
-    else
-      flash[:alert] = "#{@inventory.name} could not be deleted. #{@inventory.errors.full_messages.join(". ")}"
-      render :show
-    end
+  def destroy
+    @inventory.destroy
+    redirect_to inventories_path, notice: "Inventory deleted."
   end
 
   private

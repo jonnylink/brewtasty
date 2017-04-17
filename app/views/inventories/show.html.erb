@@ -3,6 +3,7 @@
     <%= @inventory.amount %>
     <%= @inventory.unit.name %>
     <%= @inventory.ingredient.name %>
+    <%= link_to ' <i class="fa fa-trash-o"></i>'.html_safe, @inventory, id: 'delete_inventory', method: :delete, data: {confirm: "Really? Permanently delete inventory?"} %>
   <% if !current_user.nil? && current_user.admin === true %>
     <span id="add_link">
       <%= link_to "add ingredient", new_ingredient_path %>
@@ -120,3 +121,5 @@
     <% end %>
 </table>
 </div>
+
+<%= render 'edit_inventory_form', inventory: @inventory %>
