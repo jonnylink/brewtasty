@@ -34,7 +34,7 @@ class InventoriesController < ApplicationController
       redirect_to inventory_path(@inventory)
     else
       flash[:alert] = "Inventory not updated! #{@inventory.errors.full_messages.join(". ")}"
-      render :edit
+      render :show
     end
   end
 
