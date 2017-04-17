@@ -40,7 +40,7 @@ bundle exec rake db:migrate
 bundle exec rake db:seed
 ```
 
-  4. Run the tests:
+4. Run the tests:
 
 ```bash
 bundle exec rake
@@ -49,4 +49,3 @@ bundle exec rake
   ### What it Comes With
   --------------------
 * A set of common ingredients
-* An example recipe
