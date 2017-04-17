@@ -1,7 +1,10 @@
 require 'csv'
 
 puts "Seeding tables"
-puts "*----- creating ingredient ancillary tables"
+puts "*------ creating ingredient ancillary tables"
+
+units = ['oz.', 'lb.', 'pack', 'gal.', 'min.']
+units.each { |unit_name| Unit.create(name: unit_name) }
 
 degrees = ['Low', 'Medium-Low', 'Medium', 'Medium-High', 'High', 'Very High', 'Variable']
 degrees.each { |degree_name| Degree.create(name: degree_name) }
@@ -69,7 +72,7 @@ origins = [
 ]
 origins.each { |origin_name| Origin.create(name: origin_name) }
 
-puts "**---- adding ingredients"
+puts "**----- adding ingredients"
 
 csv_ingredients = File.read(Rails.root.join('db', 'seeds', 'ingredients.csv'))
 ingredients = CSV.parse(csv_ingredients, :headers => true)
@@ -92,7 +95,7 @@ ingredients.each_with_index do |ingredient, index|
   )
 end
 
-puts "***--- creating test users"
+puts "***---- creating example users"
 
 recipe_user = User.create(
   username: "jonlink",
@@ -110,7 +113,7 @@ rating_user2 = User.create(
   password: "testtest"
 )
 
-puts "****-- creating test recipe"
+puts "****--- creating example recipe"
 
 example_recipe = Recipe.create(
    user_id: recipe_user.id,
@@ -122,31 +125,33 @@ example_recipe = Recipe.create(
    batch_size: 5,
 )
 
-puts "*****- adding ingredients to test recipe"
+puts "*****-- adding ingredients to example recipe"
 
 ingredient_list = [
-  {name: 'Pale 2-Row', amount: 13, unit: 'lb', time: ''},
-  {name: 'Flaked Oats', amount: 2, unit: 'lb', time: ''},
-  {name: 'Chocolate', amount: 1, unit: 'lb', time: ''},
-  {name: 'Black Patent', amount: 1, unit: 'lb', time: ''},
-  {name: 'Roasted Barley', amount: 1, unit: 'lb', time: ''},
-  {name: 'Caramel / Crystal 15L', amount: 1, unit: 'lb', time: ''},
-  {name: "Carapils", amount: 0.5, unit: 'lb', time: ''},
-  {name: 'Willamette', amount: 4, unit: 'oz', time: 90},
-  {name: 'Cacoa Nibs', amount: 4, unit: 'oz', time: 15},
-  {name: 'San Diego Super Yeast', amount: '', unit: '', time: ''}
+  {name: 'Pale 2-Row', amount: 13, unit: 'lb.', time: ''},
+  {name: 'Flaked Oats', amount: 2, unit: 'lb.', time: ''},
+  {name: 'Chocolate', amount: 1, unit: 'lb.', time: ''},
+  {name: 'Black Patent', amount: 1, unit: 'lb.', time: ''},
+  {name: 'Roasted Barley', amount: 1, unit: 'lb.', time: ''},
+  {name: 'Caramel / Crystal 15L', amount: 1, unit: 'lb.', time: ''},
+  {name: "Carapils", amount: 0.5, unit: 'lb.', time: ''},
+  {name: 'Willamette', amount: 4, unit: 'oz.', time: 90},
+  {name: 'Cocoa Nibs', amount: 4, unit: 'oz.', time: 15},
+  {name: 'San Diego Super Yeast', amount: 1, unit: 'pack', time: ''}
 ]
-ingredient_list.each do |ingredient|
+total = ingredient_list.count
+ingredient_list.each_with_index do |ingredient, index|
+  puts "#{index+1}/#{total} - #{ingredient[:name]}"
   RecipeIngredient.create(
     recipe_id: example_recipe.id,
     ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
     amount: ingredient[:amount],
-    unit: ingredient[:unit],
+    unit: Unit.where(name: ingredient[:unit]).first.id,
     time: ingredient[:time]
   )
 end
 
-puts "****** creating test recipe ratings"
+puts "******- creating example recipe ratings"
 
 Rating.create(
   user_id: rating_user.id,
@@ -160,3 +165,28 @@ Rating.create(
   recipe_id: example_recipe.id,
   rating: 4
 )
+
+puts "******* creating example inventory"
+
+inventory_list = [
+  {name: 'Pale 2-Row', amount: 13.5, unit: 'lb.'},
+  {name: 'Flaked Oats', amount: 2.25, unit: 'lb.'},
+  {name: 'Chocolate', amount: 2, unit: 'lb.'},
+  {name: 'Black Patent', amount: 6, unit: 'lb.'},
+  {name: 'Roasted Barley', amount: 5, unit: 'lb.'},
+  {name: 'Caramel / Crystal 15L', amount: 10, unit: 'lb.'},
+  {name: "Carapils", amount: 5, unit: 'lb.'},
+  {name: 'Willamette', amount: 4, unit: 'oz.'},
+  {name: 'Cocoa Nibs', amount: 10, unit: 'oz.'},
+  {name: 'San Diego Super Yeast', amount: 4, unit: 'pack'}
+]
+total = ingredient_list.count
+inventory_list.each_with_index do |inventory, index|
+  puts "#{index+1}/#{total} - #{inventory[:name]}"
+  Inventory.create(
+    user_id: recipe_user.id,
+    ingredient_id: Ingredient.where(name: inventory[:name]).first.id,
+    amount: inventory[:amount],
+    unit_id: Unit.where(name: inventory[:unit]).first.id
+  )
+end

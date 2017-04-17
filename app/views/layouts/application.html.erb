@@ -13,8 +13,10 @@
 
     <nav>
       <div id="nav_links_left">
-        <a href=" ">Inventory</a> &bull;
-        <a href=" ">Recipes</a> &bull;
+        <% if current_user %>
+            <%= link_to 'Inventory', inventories_path %> &bull;
+        <% end %>
+        <%= link_to 'Recipes', recipes_path %> &bull;
         <%= link_to 'Ingredients', ingredients_path %>
         <%= render 'recipes/search' %>
       </div>

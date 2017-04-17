@@ -1,5 +1,6 @@
 class Ingredient < ApplicationRecord
   has_many :recipe_ingredients
+  has_many :inventories
   belongs_to :category
   belongs_to :use, optional: true
   belongs_to :kind, optional: true

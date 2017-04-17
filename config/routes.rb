@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :ingredients
+  resources :inventories
   resources :ratings, only: [:destroy]
 
   resources :recipes do

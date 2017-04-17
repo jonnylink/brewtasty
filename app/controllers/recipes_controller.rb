@@ -71,14 +71,10 @@ class RecipesController < ApplicationController
       :batch_size,
       :boil_size,
       :boil_time,
+      :boil_gravity,
       :original_gravity,
       :final_gravity,
-      :alcohol_by_volume,
-      :bitterness,
-      :color,
-      :keg_temp,
-      :storage_temp,
-      :age_for
+      :ferment_temp
     )
   end
 

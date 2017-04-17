@@ -44,11 +44,11 @@
       <% end %>
 
       <% if !ingredient.ppg.blank? %>
-        <td><%= ingredient.ppg %></td>
+        <td><%= ingredient.ppg.round(0) %>PPG</td>
       <% end %>
 
       <% if !ingredient.alpha.blank? %>
-        <td><%= ingredient.alpha %></td>
+        <td><%= ingredient.alpha %>AA</td>
       <% end %>
 
     </tr>
