@@ -1,9 +1,10 @@
 class InventoriesController < ApplicationController
   before_action :set_inventory, only: [:show, :edit, :update, :remove]
-  before_action -> {check_user(@recipe)}, only: [:update, :edit, :remove]
+  before_action -> {check_user(@inventory)}, only: [:update, :remove]
+  before_action :signed_in, only: [:index, :show, :edit, :new, :create]
 
   def index
-    @inventories = Inventory.all
+    @inventories = Inventory.where(user: current_user)
   end
 
   def show

@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
       render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
     end
   end
+
+  def signed_in
+    if !current_user
+      render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    end
+  end
 end
