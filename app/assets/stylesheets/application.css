@@ -23,13 +23,13 @@ html, body{
 }
 
 /*---- HEADERS ----*/
+h1, h2, h3{
+  color: #5b8dd0;
+}
 h2, h3{
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   margin: 0;
-}
-h1, h2, h3{
-  color: #5b8dd0;
 }
 h2{
   font-size: 2rem;
@@ -64,7 +64,6 @@ input, textarea {
   width:100%;
   margin:0.5rem 0;
 }
-
 button, #submit, .button{
   background: #409bcf;
   border: 1px solid #409bcf;
@@ -176,7 +175,7 @@ nav{
 #creator{
   margin: 0 0 2.5rem 0;
 }
-#brew_score, #add_recipe_link{
+#brew_score, #add_link{
   white-space: nowrap;
 }
 #ingredient_table{
