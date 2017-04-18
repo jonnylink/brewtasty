@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :ratings
     post 'search', on: :collection
   end
+  get 'search', to: 'recipes#search'
 
   namespace :admin do
     resources :users, only: [:index, :show, :destroy, :ban]

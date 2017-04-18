@@ -49,12 +49,18 @@ class RecipesController < ApplicationController
   end
 
   def search
-    query = "%#{params[:search_recipes]}%"
-    @recipes = Recipe.joins(:user).where('name ILIKE ? OR username ILIKE ?', query, query)
-    if @recipes.count > 0
-      flash.now[:notice] = "Recipes found. Searched for: #{params[:search_recipes]}."
+    if params[:search_recipes].nil?
+      @recipes = Recipe.where(active: 1)
+      @searched = false
     else
-      flash.now[:alert] = "Sorry, no recipes found. Searched for: #{params[:search_recipes]}."
+      @searched = true
+      query = "%#{params[:search_recipes]}%"
+      @recipes = Recipe.joins(:user).where('name ILIKE ? OR username ILIKE ?', query, query)
+      if @recipes.count > 0
+        flash.now[:notice] = "Recipes found. Searched for: #{params[:search_recipes]}."
+      else
+        flash.now[:alert] = "Sorry, no recipes found. Searched for: #{params[:search_recipes]}."
+      end
     end
   end
 
