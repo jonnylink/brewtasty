@@ -3,5 +3,5 @@
   <%= link_to current_user.username, edit_user_registration_path, id: "user_accnt", title: "view account" %>
   <%= link_to '[ <i class="fa fa-unlock"></i> ]'.html_safe, destroy_user_session_path, method: :delete, id: "sign_out", title: "sign out" %>
 <% else %>
-  <%= link_to 'account [ <i class="fa fa-lock"></i> ]'.html_safe, new_user_session_path, id: "sign_in", title: "sign in or sign up!" %>
+  <%= link_to 'account [&nbsp;<i class="fa fa-lock"></i>&nbsp;]'.html_safe, new_user_session_path, id: "sign_in", title: "sign in or sign up!" %>
 <% end %>

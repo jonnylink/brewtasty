@@ -116,18 +116,24 @@ header i{
 nav{
   margin: 0.5rem 1rem 0.5rem 1rem;
 }
-#nav_links_left{
-  display: inline-block;
-  text-align: left;
-  width:49.5%;
+#nav_links_left, #nav_links_right{
+  display: block;
+  text-align: center;
 }
-#nav_links_right{
-  display: inline-block;
-  text-align: right;
-  width:49.5%;
+#nav_links_left *, #nav_links_right * {
+  display:inline
 }
 #search_form{
-  display: inline-block;
+  display: inline;
+}
+#search_form input {
+  display: inline;
+  width: 5rem;
+  padding: 0.25rem 0.5rem;
+}
+#search_form button {
+  display: inline;
+  padding: 0.25rem 0.5rem;
 }
 #back_link{
   display: block;
@@ -196,6 +202,19 @@ th{
   }
   h1{
     text-align: left;
+  }
+  #nav_links_left{
+    display: inline-block;
+    text-align: left;
+    width:45%;
+  }
+  #nav_links_right{
+    display: inline-block;
+    text-align: right;
+    width:52%;
+  }
+  #search_form input {
+    width: 60%;
   }
   .long_form input, .long_form textarea {
     width: 20rem;
