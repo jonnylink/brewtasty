@@ -1,12 +1,12 @@
 require "rails_helper"
 
 feature "delete rating" do
+  let!(:user){ FactoryGirl.create(:user) }
+  let!(:beer){ FactoryGirl.create(:recipe, user: user) }
+  let!(:angry_fella){ FactoryGirl.create(:user) }
+  let!(:comment){ FactoryGirl.create(:rating, recipe: beer, user: angry_fella) }
 
   scenario "authenticated user can delete owned rating" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-    angry_fella = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:rating, recipe: beer, user: angry_fella)
     sign_in_as angry_fella
     visit recipe_path(beer)
     click_link "delete_rating_#{angry_fella.id}"
@@ -15,10 +15,6 @@ feature "delete rating" do
   end
 
   scenario "authenticated user cannot delete unowned rating" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-    angry_fella = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:rating, recipe: beer, user: angry_fella)
     sign_in_as user
     visit recipe_path(beer)
 
@@ -26,10 +22,6 @@ feature "delete rating" do
   end
 
   scenario "unauthenticated user cannot delete rating" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-    angry_fella = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:rating, recipe: beer, user: angry_fella)
     visit recipe_path(beer)
 
     expect(page).to_not have_link("delete_rating_#{angry_fella.id}")

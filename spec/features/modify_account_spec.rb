@@ -1,8 +1,10 @@
 require "rails_helper"
 
 feature "user edits account" do
+  let!(:user){ FactoryGirl.create(:user) }
+
+
   scenario "specifies new email" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     click_link "user_accnt"
@@ -16,7 +18,6 @@ feature "user edits account" do
   end
 
   scenario "specifies new password" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
     old_password = user.password
     user.password = "my_new_password"
@@ -34,7 +35,6 @@ feature "user edits account" do
   end
 
   scenario "specifies new name" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     click_link "user_accnt"
@@ -48,7 +48,6 @@ feature "user edits account" do
   end
 
   scenario "deletes account" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     click_link "user_accnt"

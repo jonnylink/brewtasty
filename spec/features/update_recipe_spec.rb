@@ -1,10 +1,11 @@
 require "rails_helper"
 
 feature "update recipe" do
-  scenario "authenticated user can edit user created recipe" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
+  let!(:user){ FactoryGirl.create(:user) }
+  let!(:beer){ FactoryGirl.create(:recipe, user: user) }
 
+
+  scenario "authenticated user can edit user created recipe" do
     sign_in_as user
     visit edit_recipe_path(beer)
 
@@ -23,9 +24,6 @@ feature "update recipe" do
   end
 
   scenario "authenticated user can edit user created recipe" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-
     sign_in_as user
     visit edit_recipe_path(beer)
 
@@ -37,20 +35,17 @@ feature "update recipe" do
   end
 
   scenario "authenticated user cannot edit other user's recipe" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
     some_guy = FactoryGirl.create(:user)
 
     sign_in_as some_guy
     visit edit_recipe_path(beer)
+
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 
   scenario "unauthenticated user cannot edit recipe" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-
     visit edit_recipe_path(beer)
+
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 

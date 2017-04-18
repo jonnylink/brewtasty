@@ -1,20 +1,18 @@
 require "rails_helper"
 
 feature "admin management" do
+  let!(:user){ FactoryGirl.create(:user) }
+  let!(:beer){ FactoryGirl.create(:recipe, user: user) }
+  let!(:angry_fella){ FactoryGirl.create(:user) }
+  let!(:comment){ FactoryGirl.create(:rating, recipe: beer, user: angry_fella) }
+  let!(:admin){ FactoryGirl.create(:user, admin: true) }
 
   scenario "normal users cannot access admin functions" do
-    user = FactoryGirl.create(:user)
     visit 'admin/users'
     expect(page).to have_content("The page you were looking for doesn't exist.")
   end
 
   scenario "admin can delete any rating" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-    angry_fella = FactoryGirl.create(:user)
-    comment = FactoryGirl.create(:rating, recipe: beer, user: angry_fella)
-    admin = FactoryGirl.create(:user, admin: true)
-
     sign_in_as admin
     visit recipe_path(beer)
     expect(page).to have_link("delete_rating_#{angry_fella.id}")
@@ -23,10 +21,6 @@ feature "admin management" do
   end
 
   scenario "admin can delete any recipe" do
-    user = FactoryGirl.create(:user)
-    beer = FactoryGirl.create(:recipe, user: user)
-    admin = FactoryGirl.create(:user, admin: true)
-
     sign_in_as admin
     visit recipe_path(beer)
     click_link "delete recipe"
@@ -34,9 +28,6 @@ feature "admin management" do
   end
 
   scenario "admin can ban basic users" do
-    user = FactoryGirl.create(:user)
-    admin = FactoryGirl.create(:user, admin: true)
-
     sign_in_as admin
     visit 'admin/users'
     expect(page).to have_content(user.username)
@@ -51,7 +42,6 @@ feature "admin management" do
 
   scenario "admin cannot ban admins" do
     other_admin = FactoryGirl.create(:user, admin: true)
-    admin = FactoryGirl.create(:user, admin: true)
 
     sign_in_as admin
     visit 'admin/users'
@@ -60,7 +50,6 @@ feature "admin management" do
 
   scenario "admin can unban basic users" do
     banned_user = FactoryGirl.create(:user, active: 2)
-    admin = FactoryGirl.create(:user, admin: true)
 
     sign_in_as admin
     visit 'admin/users'

@@ -1,8 +1,9 @@
 require "rails_helper"
 
 feature "user signs in" do
+  let!(:user){ FactoryGirl.create(:user) }
+
   scenario "specifies valid email and password" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     expect(page).to have_content("Welcome back")
@@ -10,7 +11,6 @@ feature "user signs in" do
   end
 
   scenario "specifies invalid email" do
-    user = FactoryGirl.create(:user)
     visit root_path
 
     click_link "sign_in"
@@ -24,7 +24,6 @@ feature "user signs in" do
   end
 
   scenario "specifies invalid password" do
-    user = FactoryGirl.create(:user)
     visit root_path
 
     click_link "sign_in"
@@ -39,8 +38,9 @@ feature "user signs in" do
 end
 
 feature "user signs out" do
+  let!(:user){ FactoryGirl.create(:user) }
+
   scenario "signs out" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
     click_link "sign out"
 

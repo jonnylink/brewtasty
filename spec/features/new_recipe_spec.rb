@@ -1,8 +1,9 @@
 require "rails_helper"
 
 feature "Add recipe" do
+  let!(:user){ FactoryGirl.create(:user) }
+
   scenario "authenticated user adds recipe" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     click_link "add recipe"
@@ -22,7 +23,6 @@ feature "Add recipe" do
   end
 
   scenario "recipe name required" do
-    user = FactoryGirl.create(:user)
     sign_in_as user
 
     click_link "add recipe"
@@ -40,7 +40,6 @@ feature "Add recipe" do
   end
 
   scenario "recipe name must be unique" do
-    user = FactoryGirl.create(:user)
     Recipe.create(user_id: user.id, name: "neat-o beer")
     sign_in_as user
 
