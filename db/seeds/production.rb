@@ -176,7 +176,7 @@ ingredient_list = [
   {name: 'Citra', amount: 1.25, unit: 'oz.', time: '5'},
   {name: 'Citra', amount: 1.25, unit: 'oz.', time: '1'},
   {name: 'Citra', amount: 3, unit: 'oz.', time: '10080'},
-  {name: 'Safale S-04,Fermentis', amount: 4, unit: 'pack', time: ''}
+  {name: 'Safale S-04', amount: 4, unit: 'pack', time: ''}
 ]
 total = ingredient_list.count
 ingredient_list.each_with_index do |ingredient, index|
