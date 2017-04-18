@@ -159,7 +159,7 @@ ingredient_list.each_with_index do |ingredient, index|
     recipe_id: example_recipe.id,
     ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
     amount: ingredient[:amount],
-    unit: Unit.where(name: ingredient[:unit]).first.id,
+    unit_id: Unit.where(name: ingredient[:unit]).first.id,
     time: ingredient[:time]
   )
 end
@@ -185,7 +185,7 @@ ingredient_list.each_with_index do |ingredient, index|
     recipe_id: example_recipe2.id,
     ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
     amount: ingredient[:amount],
-    unit: Unit.where(name: ingredient[:unit]).first.id,
+    unit_id: Unit.where(name: ingredient[:unit]).first.id,
     time: ingredient[:time]
   )
 end

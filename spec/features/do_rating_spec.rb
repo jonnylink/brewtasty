@@ -67,4 +67,21 @@ feature "rate beer recipes" do
     expect(page).to have_content("omg")
   end
 
+  scenario "re-rate a recipe with invalid info" do
+    sign_in_as some_guy
+    visit recipe_path(beer)
+    page.choose("rating_rating_gross")
+    fill_in "rating_comment", with: "I hated it!!!!!"
+    click_button "submit"
+
+    expect(page).to have_content("Thanks for your rating!")
+    expect(page).to have_content(some_guy.username)
+    expect(page).to have_content("I hated it!!!!!")
+    expect(page).to have_content("gross")
+
+    click_button "submit"
+
+    expect(page).to have_content("Rating can't be blank")
+  end
+
 end

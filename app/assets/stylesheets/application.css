@@ -48,7 +48,6 @@ label {
   color: #B4886B;
   font-weight: bold;
   margin: 0 0.5rem 0 0.5rem;
-  padding-top: 2rem;
 }
 input, textarea {
   background: #fff;
@@ -61,7 +60,6 @@ input, textarea {
   width: 100%;
 }
 .long_form input, .long_form textarea {
-  width:100%;
   margin:0.5rem 0;
 }
 button, #submit, .button{
@@ -119,20 +117,8 @@ nav{
   display: block;
   text-align: center;
 }
-#nav_links_left *, #nav_links_right * {
+#nav_links_left a, #nav_links_right a {
   display:inline
-}
-#search_form{
-  display: inline;
-}
-#search_form input {
-  display: inline;
-  width: 5rem;
-  padding: 0.25rem 0.5rem;
-}
-#search_form button {
-  display: inline;
-  padding: 0.25rem 0.5rem;
 }
 #back_link{
   display: block;
@@ -145,11 +131,17 @@ nav{
   margin: 1rem;
   padding: 1rem;
 }
+#search_form button {
+  display: inline;
+  margin-bottom: 2rem;
+  padding: 0.3rem 0.5rem;
+}
 #control_bar{
   margin: 1rem 0 3rem 0;
 }
-#new_rating input{
+#new_rating input, #user_remember_me{
   display: inline;
+  width: auto;
 }
 .rating{
   background: #fff;
@@ -225,39 +217,8 @@ th{
     float: right;
   }
 }
-
-/*  SECTIONS  */
-.section {
-	clear: both;
-	padding: 0;
-	margin: 0;
-}
-/*  COLUMN SETUP  */
-.col {
-	display: block;
-	float:left;
-	margin: 1% 0 1% 1.6%;
-}
-.col:first-child { margin-left: 0; }
-/*  GROUPING  */
-.group:before,
-.group:after { content:""; display:table; }
-.group:after { clear:both;}
-.group { zoom:1; /* For IE 6/7 */ }
-/*  GRID OF TWO  */
-.span_2_of_2 {
-	width: 100%;
-}
-.span_1_of_2 {
-	width: 49.2%;
-}
-/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
-@media only screen and (max-width: 480px) {
-	.col {
-		margin: 1% 0 1% 0%;
-	}
-}
-
-@media only screen and (max-width: 480px) {
-	.span_2_of_2, .span_1_of_2 { width: 100%; }
+label {
+  color: #B4886B;
+  font-weight: bold;
+  margin: 0 0.5rem 0 0.5rem;
 }

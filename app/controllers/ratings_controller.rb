@@ -1,13 +1,13 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :edit, :update, :remove, :destroy]
+  before_action :set_rating, only: [:show, :edit, :remove, :destroy]
   before_action -> {check_user(@rating)}, only: [:update, :edit, :remove]
 
   def update
-    if @rating_check.update(@final_rating_params)
+    if @current_rating.update(@final_rating_params)
       flash[:notice] = "Your rating was updated!"
       redirect_to recipe_path(params[:recipe_id])
     else
-      flash[:alert] = "Rating not updated! #{@rating_check.errors.full_messages.join(". ")}"
+      flash[:alert] = "Rating not updated! #{@current_rating.errors.full_messages.join(". ")}"
       redirect_to recipe_path(params[:recipe_id])
     end
   end
@@ -16,8 +16,9 @@ class RatingsController < ApplicationController
     @final_rating_params = rating_params
     @final_rating_params["rating"] = Rating::rating_array_index(rating_params["rating"])
     @final_rating_params["comment"] = rating_params["comment"].strip
-    @rating_check = Rating.where({ user_id: rating_params["user_id"], recipe_id: rating_params["recipe_id"] })
-    if @rating_check.count >= 1
+    @current_rating = Rating.where({ user_id: rating_params["user_id"], recipe_id: rating_params["recipe_id"] }).first
+
+    if !@current_rating.nil?
       self.update
     else
       @rating = Rating.new(@final_rating_params)
