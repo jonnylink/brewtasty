@@ -1,3 +1,4 @@
+#this is for demo production
 require 'csv'
 
 puts "Seeding tables"
@@ -123,6 +124,18 @@ example_recipe = Recipe.create(
    final_gravity: 1.02,
    boil_time: 90,
    batch_size: 5,
+   boil_size: 6.5
+)
+
+example_recipe2 = Recipe.create(
+   user_id: recipe_user.id,
+   name: "American IPA",
+   boil_gravity: 1.044,
+   original_gravity: 1.061,
+   final_gravity: 1.017,
+   boil_time: 60,
+   batch_size: 6,
+   boil_size: 7
 )
 
 puts "*****-- adding ingredients to example recipe"
@@ -144,6 +157,32 @@ ingredient_list.each_with_index do |ingredient, index|
   puts "#{index+1}/#{total} - #{ingredient[:name]}"
   RecipeIngredient.create(
     recipe_id: example_recipe.id,
+    ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
+    amount: ingredient[:amount],
+    unit: Unit.where(name: ingredient[:unit]).first.id,
+    time: ingredient[:time]
+  )
+end
+
+ingredient_list = [
+  {name: 'Pale 2-Row', amount: 11.75, unit: 'lb.', time: ''},
+  {name: 'Munich - Light 10L', amount: 1.2, unit: 'lb.', time: ''},
+  {name: 'CaraFoam', amount: 0.5, unit: 'lb.', time: ''},
+  {name: 'Caramel / Crystal 60L', amount: 0.5, unit: 'lb.', time: ''},
+  {name: 'Melanoidin', amount: 0.5, unit: 'lb.', time: ''},
+  {name: 'Citra', amount: 0.75, unit: 'lb.', time: ''},
+  {name: "Citra", amount: 1.25, unit: 'lb.', time: '15'},
+  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '10'},
+  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '5'},
+  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '1'},
+  {name: 'Citra', amount: 3, unit: 'oz.', time: '10080'},
+  {name: 'Safale S-04', amount: 4, unit: 'pack', time: ''}
+]
+total = ingredient_list.count
+ingredient_list.each_with_index do |ingredient, index|
+  puts "#{index+1}/#{total} - #{ingredient[:name]}"
+  RecipeIngredient.create(
+    recipe_id: example_recipe2.id,
     ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
     amount: ingredient[:amount],
     unit: Unit.where(name: ingredient[:unit]).first.id,
@@ -180,7 +219,7 @@ inventory_list = [
   {name: 'Cocoa Nibs', amount: 10, unit: 'oz.'},
   {name: 'San Diego Super Yeast', amount: 4, unit: 'pack'}
 ]
-total = ingredient_list.count
+total = inventory_list.count
 inventory_list.each_with_index do |inventory, index|
   puts "#{index+1}/#{total} - #{inventory[:name]}"
   Inventory.create(
