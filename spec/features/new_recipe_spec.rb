@@ -18,8 +18,40 @@ feature "Add recipe" do
     fill_in "recipe_ferment_temp", with: 62
     click_button "add Recipe"
 
-    expect(page).to have_content("Recipe added!")
+    expect(page).to have_content("Recipe started!")
     expect(page).to have_content("neat-o beer")
+  end
+
+  scenario "authenticated user adds ingredients to owned recipe" do
+    factory_category = FactoryGirl.create(:category)
+    factory_ingredient = FactoryGirl.create(:ingredient, category: factory_category)
+    factory_unit = FactoryGirl.create(:unit)
+    factory_beer = FactoryGirl.create(:recipe, user: user)
+
+    sign_in_as user
+    visit recipe_path(factory_beer)
+
+    click_link "add ingredient"
+    fill_in "recipe_ingredient_amount", with: 25
+    click_button "add Recipe ingredient"
+
+    expect(page).to have_content("Ingredient added!")
+  end
+
+  scenario "authenticated user adds invalid ingredients to owned recipe" do
+    factory_category = FactoryGirl.create(:category)
+    factory_ingredient = FactoryGirl.create(:ingredient, category: factory_category)
+    factory_unit = FactoryGirl.create(:unit)
+    factory_beer = FactoryGirl.create(:recipe, user: user)
+
+    sign_in_as user
+    visit recipe_path(factory_beer)
+
+    click_link "add ingredient"
+    click_button "add Recipe ingredient"
+
+    expect(page).to have_content("Ingredient not added.")
+    expect(page).to have_content("Amount is not a number")
   end
 
   scenario "recipe name required" do

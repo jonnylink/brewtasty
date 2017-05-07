@@ -21,7 +21,7 @@
       <td><%= recipe_ingredient.ingredient.name %></td>
       <td><%= recipe_ingredient.ingredient.category.name %></td>
       <td>
-        <% if recipe_ingredient.ingredient.color %>
+        <% if recipe_ingredient.ingredient.color && recipe_ingredient.amount && @recipe.batch_size %>
           <%= recipe_ingredient.ingredient.color %> &deg;L
           <% color = ((recipe_ingredient.amount * recipe_ingredient.ingredient.color) / @recipe.batch_size) + color %>
         <% end %>
@@ -45,6 +45,11 @@
     </tr>
   <% end %>
 </table>
+<% if current_user && (current_user.id == @recipe.user_id || current_user.admin === true ) %>
+  <div id="control_bar">
+    <%= link_to '<i class="fa fa-plus-square"></i> add ingredient'.html_safe, new_recipe_ingredient_path(recipe_id: @recipe.id) %>
+  </div>
+<% end %>
 
 <h3>Details</h3>
 <ul>
@@ -56,11 +61,13 @@
   %> SRM</li>
   <li>IBUs:
     <%=
+    if (@recipe.boil_gravity && @recipe.boil_time && @recipe.batch_size)
       fG = 1.65 * 0.000125**(@recipe.boil_gravity - 1)
       fT = (1 - Math.log(10)**(-0.04 * @recipe.boil_time)) / 4.15
       u = fG * fT
       ibu = aau * u * (75 / @recipe.batch_size)
       (ibu).round(2)
+    end
     %>
   </li>
 </ul>
@@ -68,7 +75,12 @@
   <li>Boil Gravity: <%= @recipe.boil_gravity %></li>
   <li>Orginal Gravity: <%= @recipe.original_gravity %></li>
   <li>Final Gravity: <%= @recipe.final_gravity %></li>
-  <li>ABV: <%= ((@recipe.original_gravity - @recipe.final_gravity)* 131).round(2) %>&percnt;</li>
+  <li>ABV:
+  <%=
+  if  @recipe.original_gravity && @recipe.final_gravity
+    ((@recipe.original_gravity - @recipe.final_gravity)* 131).round(2)
+  end
+  %>&percnt;</li>
 </ul>
 
 <% if current_user && (current_user.id == @recipe.user_id || current_user.admin === true ) %>

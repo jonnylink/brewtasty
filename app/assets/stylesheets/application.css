@@ -211,7 +211,7 @@ th{
     width: 20rem;
   }
   #submit{
-    width:10rem;
+    width:auto;
   }
   #brew_score, #add_link{
     float: right;

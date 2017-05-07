@@ -30,8 +30,8 @@ class RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      flash[:notice] = "Recipe added!"
-      redirect_to root_path
+      flash[:notice] = "Recipe started! Now add the ingredients."
+      redirect_to recipe_path(@recipe)
     else
       flash.now[:alert] = "Recipe not added. #{@recipe.errors.full_messages.join(". ")}"
       render :new

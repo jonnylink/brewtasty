@@ -15,14 +15,14 @@ Rails.application.routes.draw do
     resources :ratings
     post 'search', on: :collection
   end
+  get '/recipes/:id/remove', to: 'recipes#remove'
   get 'search', to: 'recipes#search'
+  resources :recipe_ingredients, only: [:show, :new, :create, :edit, :update, :destroy]
 
   namespace :admin do
     resources :users, only: [:index, :show, :destroy, :ban]
     get '/users/:id/ban', to: 'users#ban'
     get '/users/:id/unban', to: 'users#unban'
   end
-
-  get '/recipes/:id/remove', to: 'recipes#remove'
 
 end
