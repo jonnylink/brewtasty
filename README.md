@@ -22,7 +22,7 @@ TastyBrew will be an inventory tracking and recipe suggestion tool for craft and
 
 ```bash
 git clone https://github.com/jonnylink/tastybrew.git
-cd sharetribe
+cd tastybrew
 git checkout latest
 ```
 

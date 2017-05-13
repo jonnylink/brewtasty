@@ -2,13 +2,25 @@
   <h2>
     Tasty ingredients
   <% if !current_user.nil? && current_user.admin === true %>
-    <--<span id="add_ingredient_link">
+    <!--<span id="add_ingredient_link">
       <%= link_to "add ingredient", new_ingredient_path %>
     </span>-->
   <% end %>
   </h2>
 
   <table id="ingredient_list">
+    <tr>
+      <th class="ingredients">Name</th>
+      <th class="ingredients">Kind</th>
+      <th class="ingredients">Use</th>
+      <th class="ingredients">Origin</th>
+      <th class="ingredients">Product ID</th>
+      <th class="ingredients">Alcohol Tolerance</th>
+      <th class="ingredients">Flocculation</th>
+      <th class="ingredients">Color</th>
+      <th class="ingredients">PPG</th>
+      <th class="ingredients">AA</th>
+    </tr>
   <% @ingredients.each do |ingredient| %>
     <tr>
       <td>

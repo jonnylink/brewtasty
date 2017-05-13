@@ -177,7 +177,11 @@ nav{
 th{
   font-weight:bold;
   text-align: right;
-  padding-right: 0.5rem
+  padding-right: 0.5rem;
+}
+th.ingredients{
+  text-align: center;
+  padding-right: 0;
 }
 .ingredient td{
   padding: 0.2rem 1rem;
