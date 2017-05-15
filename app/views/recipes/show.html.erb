@@ -14,16 +14,14 @@
 
   <h3>Ingredients</h3>
   <table id="ingredient_table">
-  <% color = aau = 0; %>
   <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
     <tr class="ingredient">
       <td class="amount"><%= "#{recipe_ingredient.amount} #{recipe_ingredient.unit.name}" %></td>
       <td><%= recipe_ingredient.ingredient.name %></td>
       <td><%= recipe_ingredient.ingredient.category.name %></td>
       <td>
-        <% if recipe_ingredient.ingredient.color && recipe_ingredient.amount && @recipe.batch_size %>
+        <% if recipe_ingredient.ingredient.color %>
           <%= recipe_ingredient.ingredient.color %> &deg;L
-          <% color = ((recipe_ingredient.amount * recipe_ingredient.ingredient.color) / @recipe.batch_size) + color %>
         <% end %>
       </td>
       <td>
@@ -38,7 +36,6 @@
       </td>
       <td>
         <% if !recipe_ingredient.ingredient.alpha.nil? %>
-          <% aau = (recipe_ingredient.amount * recipe_ingredient.ingredient.alpha) + aau %>
           <%= recipe_ingredient.ingredient.alpha %>AA
         <% end %>
       </td>
@@ -55,20 +52,9 @@
 <ul>
   <li>Batch Size: <%= @recipe.batch_size %> gal.</li>
   <li>Boil Time: <%= @recipe.boil_time %> gal.</li>
-  <li>Color: <%=
-    color = 1.4922 * (color ** 0.6859)
-    color > 50 ? 50 : (color).round(2)
-  %> SRM</li>
+  <li>Color: <%= @recipe.color_calc(@recipe) %> SRM</li>
   <li>IBUs:
-    <%=
-    if (@recipe.boil_gravity && @recipe.boil_time && @recipe.batch_size)
-      fG = 1.65 * 0.000125**(@recipe.boil_gravity - 1)
-      fT = (1 - Math.log(10)**(-0.04 * @recipe.boil_time)) / 4.15
-      u = fG * fT
-      ibu = aau * u * (75 / @recipe.batch_size)
-      (ibu).round(2)
-    end
-    %>
+    <%= @recipe.ibu_calc(@recipe) %>
   </li>
 </ul>
 <ul>
