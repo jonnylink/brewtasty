@@ -6,7 +6,7 @@
 
 ### ABOUT
 --------------------
-TastyBrew will be an inventory tracking and recipe suggestion tool for craft and home brewers.
+TastyBrew will be an inventory tracking and recipe suggestion tool for craft and home brewers. Demo can be found at https://tastybrew.herokuapp.com
 
 ### FEATURES
 --------------------
