@@ -140,16 +140,16 @@ example_recipe2 = Recipe.create(
 puts "*****-- adding ingredients to example recipe"
 
 ingredient_list = [
-  {name: 'Pale 2-Row', amount: 13, unit: 'lb.', time: ''},
-  {name: 'Flaked Oats', amount: 2, unit: 'lb.', time: ''},
-  {name: 'Chocolate', amount: 1, unit: 'lb.', time: ''},
-  {name: 'Black Patent', amount: 1, unit: 'lb.', time: ''},
-  {name: 'Roasted Barley', amount: 1, unit: 'lb.', time: ''},
-  {name: 'Caramel / Crystal 15L', amount: 1, unit: 'lb.', time: ''},
-  {name: "Carapils", amount: 0.5, unit: 'lb.', time: ''},
-  {name: 'Willamette', amount: 4, unit: 'oz.', time: 90},
-  {name: 'Cocoa Nibs', amount: 4, unit: 'oz.', time: 15},
-  {name: 'San Diego Super Yeast', amount: 1, unit: 'pack', time: ''}
+  {name: 'Pale 2-Row', amount: 13, unit: 'lb.', time: '', use: ''},
+  {name: 'Flaked Oats', amount: 2, unit: 'lb.', time: '', use: ''},
+  {name: 'Chocolate', amount: 1, unit: 'lb.', time: '', use: ''},
+  {name: 'Black Patent', amount: 1, unit: 'lb.', time: '', use: ''},
+  {name: 'Roasted Barley', amount: 1, unit: 'lb.', time: '', use: ''},
+  {name: 'Caramel / Crystal 15L', amount: 1, unit: 'lb.', time: '', use: ''},
+  {name: "Carapils", amount: 0.5, unit: 'lb.', time: '', use: ''},
+  {name: 'Willamette', amount: 4, unit: 'oz.', time: 90, use: 'First Wort'},
+  {name: 'Cocoa Nibs', amount: 4, unit: 'oz.', time: 15, use: ''},
+  {name: 'San Diego Super Yeast', amount: 1, unit: 'pack', time: '', use: ''}
 ]
 total = ingredient_list.count
 ingredient_list.each_with_index do |ingredient, index|
@@ -159,6 +159,7 @@ ingredient_list.each_with_index do |ingredient, index|
     ingredient_id: Ingredient.where(name: ingredient[:name]).first.id,
     amount: ingredient[:amount],
     unit_id: Unit.where(name: ingredient[:unit]).first.id,
+    use_id: (ingredient[:use].blank? ? nil : Use.where(name: ingredient[:use]).first.id),
     time: ingredient[:time]
   )
 end

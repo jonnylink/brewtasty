@@ -1,8 +1,8 @@
 # TastyBrew
 
-[![Build Status](https://travis-ci.org/jonnylink/tastybrew.svg?branch=master)](https://travis-ci.org/jonnylink/tastybrew)
-[![Code Climate](https://codeclimate.com/github/jonnylink/tastybrew/badges/gpa.svg)](https://codeclimate.com/github/jonnylink/tastybrew)
-[![Test Coverage](https://codeclimate.com/github/jonnylink/tastybrew/badges/coverage.svg)](https://codeclimate.com/github/jonnylink/tastybrew/coverage)
+[![Build Status](https://travis-ci.org/jonnylink/brewtasty.svg?branch=master)](https://travis-ci.org/jonnylink/brewtasty)
+[![Code Climate](https://codeclimate.com/github/jonnylink/brewtasty/badges/gpa.svg)](https://codeclimate.com/github/jonnylink/brewtasty)
+[![Test Coverage](https://codeclimate.com/github/jonnylink/brewtasty/badges/coverage.svg)](https://codeclimate.com/github/jonnylink/brewtasty/coverage)
 
 ### ABOUT
 --------------------
@@ -21,8 +21,8 @@ TastyBrew will be an inventory tracking and recipe suggestion tool for craft and
 1. Get the code. Clone this git repository and check out the latest release:
 
 ```bash
-git clone https://github.com/jonnylink/tastybrew.git
-cd tastybrew
+git clone https://github.com/jonnylink/brewtasty.git
+cd brewtasty
 git checkout latest
 ```
 
