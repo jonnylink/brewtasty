@@ -87,8 +87,4 @@ feature "Add recipe" do
     visit root_path
     expect(page).to_not have_content("add recipe")
   end
-
-  ########## to be added later #################
-  pending "no ingredients"
-  pending "recipe already added" #based on ingredients and amounts
 end
