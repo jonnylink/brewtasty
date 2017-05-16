@@ -12,7 +12,6 @@
     <tr>
       <th class="ingredients">Name</th>
       <th class="ingredients">Kind</th>
-      <th class="ingredients">Use</th>
       <th class="ingredients">Origin</th>
       <th class="ingredients">Product ID</th>
       <th class="ingredients">Alcohol Tolerance</th>
@@ -29,10 +28,6 @@
 
       <% if ingredient.kind %>
         <td><%= ingredient.kind.name %></td>
-      <% end %>
-
-      <% if ingredient.use %>
-        <td><%= ingredient.use.name %></td>
       <% end %>
 
       <% if ingredient.origin %>

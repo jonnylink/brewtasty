@@ -2,6 +2,7 @@
   <%= f.collection_select :ingredient_id, Ingredient.where(active: 1).order(:name), :id, :name %>
   <%= f.text_field :amount, placeholder: "Amount", title: "Amount needed" %><br />
   <%= f.collection_select :unit_id, Unit.order(:name), :id, :name%>
+  <%= f.collection_select :use_id, Use.all.order(:name), :id, :name, include_blank: true %>
 
   <%= f.hidden_field :recipe_id, value: @recipe.id %>
   <%= f.submit id: "add to recipe"

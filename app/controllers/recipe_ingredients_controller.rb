@@ -42,6 +42,7 @@ class RecipeIngredientsController < ApplicationController
     params.require(:recipe_ingredient).permit(
       :recipe_id,
       :ingredient_id,
+      :use,
       :amount,
       :unit_id,
       :time

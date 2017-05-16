@@ -7,19 +7,17 @@ class Recipe < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
   def ibu_calc(recipe)
-    aau = 0
-    recipe.recipe_ingredients.each do |ingredient|
-      if(!ingredient.amount.nil? && !ingredient.ingredient.alpha.nil?)
-        aau = (ingredient.amount * ingredient.ingredient.alpha) + aau
+    ibu = 0
+    recipe.recipe_ingredients.each do |recipe_ingredient|
+      if(!recipe_ingredient.use.nil? && recipe_ingredient.use.name != 'Dry Hop' && recipe.boil_gravity && recipe.boil_time && recipe.batch_size && !recipe_ingredient.amount.nil?)
+        fG = 1.65 * 0.000125**(recipe.boil_gravity - 1)
+        hop_boil = recipe_ingredient.time.nil? ? recipe.boil_time : recipe_ingredient.time
+        fT = (1 - Math::E**(-0.04 * hop_boil)) / 4.15
+        u = fG * fT
+        ibu = ((recipe_ingredient.amount * recipe_ingredient.ingredient.alpha) * u * (75 / recipe.batch_size)) + ibu
       end
     end
-    if (recipe.boil_gravity && recipe.boil_time && recipe.batch_size)
-      fG = 1.65 * 0.000125**(recipe.boil_gravity - 1)
-      fT = (1 - Math.log(10)**(-0.04 * recipe.boil_time)) / 4.15
-      u = fG * fT
-      ibu = aau * u * (75 / recipe.batch_size)
-      (ibu).round(2)
-    end
+    (ibu).round(2)
   end
 
   def color_calc(recipe)

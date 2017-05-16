@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20170515012826) do
     t.float    "color"
     t.float    "ppg"
     t.float    "alpha"
-    t.integer  "use_id"
   end
 
   create_table "inventories", force: :cascade do |t|
@@ -85,7 +84,7 @@ ActiveRecord::Schema.define(version: 20170515012826) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.integer  "time"
-    t.string   "use"
+    t.integer  "use_id"
   end
 
   create_table "recipes", force: :cascade do |t|

@@ -86,7 +86,6 @@ ingredients.each_with_index do |ingredient, index|
     category_id: (ingredient['category'].blank? ? '' : Category.where(name: ingredient['category']).first.id),
     origin_id:  (ingredient['origin'].blank? ? '' : Origin.where(name: ingredient['origin']).first.id),
     kind_id: (ingredient['kind'].blank? ? '' : Kind.where(name: ingredient['kind']).first.id),
-    use_id: (ingredient['use'].blank? ? '' : Use.where(name: ingredient['use']).first.id),
     alcohol_tolerance_id: (ingredient['alcohol_tolerance'].blank? ? '' : Degree.where(name: ingredient['alcohol_tolerance']).first.id),
     flocculation_id: (ingredient['flocculation'].blank? ? '' : Degree.where(name: ingredient['flocculation']).first.id),
     color: (ingredient['color'].blank? ? '' : ingredient['color']),
@@ -165,17 +164,17 @@ ingredient_list.each_with_index do |ingredient, index|
 end
 
 ingredient_list = [
-  {name: 'Pale 2-Row', amount: 11.75, unit: 'lb.', time: ''},
+  {name: 'Dry Malt Extract - Extra Light', amount: 6, unit: 'lb.', time: ''},
   {name: 'Munich - Light 10L', amount: 1.2, unit: 'lb.', time: ''},
   {name: 'CaraFoam', amount: 0.5, unit: 'lb.', time: ''},
   {name: 'Caramel / Crystal 60L', amount: 0.5, unit: 'lb.', time: ''},
   {name: 'Melanoidin', amount: 0.5, unit: 'lb.', time: ''},
-  {name: 'Citra', amount: 0.75, unit: 'lb.', time: ''},
-  {name: "Citra", amount: 1.25, unit: 'lb.', time: '15'},
-  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '10'},
-  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '5'},
-  {name: 'Citra', amount: 1.25, unit: 'oz.', time: '1'},
-  {name: 'Citra', amount: 3, unit: 'oz.', time: '10080'},
+  {name: 'Citra', amount: 0.75, unit: 'oz.', time: '', use: 'First Wort'},
+  {name: "Citra", amount: 1.5, unit: 'oz.', time: '15', use: 'Boil'},
+  {name: 'Citra', amount: 1.15, unit: 'oz.', time: '10', use: 'Boil'},
+  {name: 'Citra', amount: 1, unit: 'oz.', time: '5', use: 'Boil'},
+  {name: 'Citra', amount: 1, unit: 'oz.', time: '1', use: 'Boil'},
+  {name: 'Citra', amount: 3, unit: 'oz.', time: '10080', use: 'Dry Hop'},
   {name: 'Safale S-04', amount: 4, unit: 'pack', time: ''}
 ]
 total = ingredient_list.count

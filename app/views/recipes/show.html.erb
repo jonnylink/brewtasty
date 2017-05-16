@@ -25,13 +25,17 @@
         <% end %>
       </td>
       <td>
-        <% if recipe_ingredient.ingredient.use %>
-          <%= recipe_ingredient.ingredient.use.name %>
+        <% if recipe_ingredient.use %>
+          <%= recipe_ingredient.use.name %>
         <% end %>
       </td>
       <td>
-        <% if recipe_ingredient.time %>
+        <% if recipe_ingredient.time && recipe_ingredient.time < 60 %>
           <%= recipe_ingredient.time %> min.
+        <% elsif recipe_ingredient.time && recipe_ingredient.time < 1440 %>
+          <%= recipe_ingredient.time/60 %> hr.
+        <% elsif recipe_ingredient.time %>
+          <%= recipe_ingredient.time/1440 %> days
         <% end %>
       </td>
       <td>
