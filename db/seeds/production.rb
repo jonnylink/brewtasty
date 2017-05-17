@@ -178,6 +178,7 @@ ingredient_list = [
   {name: 'Citra', amount: 3, unit: 'oz.', time: '10080', use: 'Dry Hop'},
   {name: 'Safale S-04', amount: 4, unit: 'pack', time: '', use: ''}
 ]
+puts "INGREDIENT LIST: #{ingredient_list}"
 total = ingredient_list.count
 ingredient_list.each_with_index do |ingredient, index|
   puts "#{index+1}/#{total} - #{ingredient[:name]}"
@@ -189,6 +190,7 @@ ingredient_list.each_with_index do |ingredient, index|
     use_id: (ingredient[:use].blank? ? nil : Use.where(name: ingredient[:use]).first.id),
     time: ingredient[:time]
   )
+  puts "THE USE_ID: #{use_id} for #{ingredient[:use]}"
 end
 
 puts "******- creating example recipe ratings"

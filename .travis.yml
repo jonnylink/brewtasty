@@ -6,7 +6,7 @@ rvm:
 
 addons:
   code_climate:
-    repo_token: '80915870980f059d7f8945c1907d8bbd1cdc7b0be69d1d5071e9767e77d64564'
+    repo_token: '253f38ccb6e5cae38523d1b537038621babe597bab9f78e64a06e0e1319b4b04'
 
 services:
   - postgresql
