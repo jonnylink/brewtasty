@@ -56,9 +56,9 @@
 <ul>
   <li>Batch Size: <%= @recipe.batch_size %> gal.</li>
   <li>Boil Time: <%= @recipe.boil_time %> gal.</li>
-  <li>Color: <%= @recipe.color_calc(@recipe) %> SRM</li>
+  <li>Color: <%= @recipe.color %> SRM</li>
   <li>IBUs:
-    <%= @recipe.ibu_calc(@recipe) %>
+    <%= @recipe.ibu %>
   </li>
 </ul>
 <ul>

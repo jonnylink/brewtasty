@@ -33,11 +33,11 @@ describe Recipe do
   it { expect validate_uniqueness_of(:name) }
 
   it "calculates color" do
-    expect(beer.color_calc(beer)).to eq(28.23)
+    expect(beer.color).to eq(28.23)
   end
 
   it "calculates ibu" do
-    expect(beer.ibu_calc(beer)).to eq(84.33)
+    expect(beer.ibu).to eq(84.33)
   end
 
 end
