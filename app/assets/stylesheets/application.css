@@ -14,7 +14,7 @@
  *= require_self
  */
 
-html, body{
+html, body {
   background: #e9e6e6;
   font-family: 'Raleway', sans-serif;
   height: 100%;
@@ -23,15 +23,15 @@ html, body{
 }
 
 /*---- HEADERS ----*/
-h1, h2, h3{
+h1, h2, h3 {
   color: #5b8dd0;
 }
-h2, h3{
+h2, h3 {
   font-family: 'Oswald', sans-serif;
   font-weight: normal;
   margin: 0;
 }
-h2{
+h2 {
   font-size: 2rem;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -62,7 +62,7 @@ input, textarea {
 .long_form input, .long_form textarea {
   margin:0.5rem 0;
 }
-button, #submit, .button{
+button, #submit, .button {
   background: #409bcf;
   border: 1px solid #409bcf;
   border-radius: 5px;
@@ -71,7 +71,7 @@ button, #submit, .button{
   padding: 0.5rem 1rem;
   text-transform: lowercase;
 }
-button i, input i{
+button i, input i {
   color: #fff;
 }
 
@@ -92,25 +92,25 @@ button i, input i{
 }
 
 /*---- SITE HEADER ----*/
-header{
+header {
   background: #fff;
   color: #5b8dd0;
   margin: 0;
   padding: 4rem 1rem 1rem 1rem;
 }
-h1{
+h1 {
   font-size: 3rem;
   font-weight: normal;
   letter-spacing: -3px;
   margin: 0;
   text-align: center;
 }
-header i{
+header i {
   color: #87ade0;
 }
 
 /*---- SITE NAVIGATION ----*/
-nav{
+nav {
   margin: 0.5rem 1rem 0.5rem 1rem;
 }
 #nav_links_left, #nav_links_right{
@@ -120,13 +120,30 @@ nav{
 #nav_links_left a, #nav_links_right a {
   display:inline
 }
-#back_link{
+#back_link {
   display: block;
   margin-top: 2rem;
 }
+#ingredient_category_menu {
+  margin: 1rem auto 4rem auto;
+}
+a.ingredient_category_menu_item {
+  color: #5b8dd0;
+  font-weight: normal;
+  letter-spacing: 0.2rem;
+  margin: 0 0.5rem;
+  padding: 0.3rem 0.5rem;
+}
+a.selected {
+  background: #ababab;
+  color: #fff;
+}
 
 /*---- SITE CONTENT ----*/
-#content{
+#table {
+  width: 100%;
+}
+#content {
   color: #36454f;
   margin: 1rem;
   padding: 1rem;
@@ -136,57 +153,57 @@ nav{
   margin-bottom: 2rem;
   padding: 0.3rem 0.5rem;
 }
-#control_bar{
+#control_bar {
   margin: 1rem 0 3rem 0;
 }
-#new_rating input, #user_remember_me{
+#new_rating input, #user_remember_me {
   display: inline;
   width: auto;
 }
-.rating{
+.rating {
   background: #fff;
   border-radius: 10px;
   color: #999;
   font-size: 0.8rem;
   padding: 0.1rem 0.4rem 0.2rem 0.4rem;
 }
-#rating_list{
+#rating_list {
   padding: 0;
 }
-#rating_list .rating{
+#rating_list .rating {
   list-style: none;
   margin-top: 1rem;
   padding: 1rem;
 }
-.rating strong{
+.rating strong {
   font-size: 2rem;
 }
-#new_rating_area{
+#new_rating_area {
   display: none;
 }
-#creator{
+#creator {
   margin: 0 0 2.5rem 0;
 }
-#brew_score, #add_link{
+#brew_score, #add_link {
   white-space: nowrap;
 }
-#ingredient_table{
+#ingredient_table {
   margin: 0.1rem 0 1rem 0;
   padding: 0 0 0 0.5rem;
 }
-th{
+th {
   font-weight:bold;
   text-align: right;
   padding-right: 0.5rem;
 }
-th.ingredients{
+th.ingredients {
   text-align: center;
   padding-right: 0;
 }
-.ingredient td{
+.ingredient td {
   padding: 0.2rem 1rem;
 }
-.amount{
+.amount {
   text-align: right;
 }
 
@@ -195,15 +212,15 @@ th.ingredients{
   header {
     padding: 8rem 2rem 1.5rem 2rem;
   }
-  h1{
+  h1 {
     text-align: left;
   }
-  #nav_links_left{
+  #nav_links_left {
     display: inline-block;
     text-align: left;
     width:45%;
   }
-  #nav_links_right{
+  #nav_links_right {
     display: inline-block;
     text-align: right;
     width:52%;
@@ -214,10 +231,10 @@ th.ingredients{
   .long_form input, .long_form textarea {
     width: 20rem;
   }
-  #submit{
+  #submit {
     width:auto;
   }
-  #brew_score, #add_link{
+  #brew_score, #add_link {
     float: right;
   }
 }

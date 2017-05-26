@@ -10,9 +10,9 @@ class Ingredient < ApplicationRecord
   validates :name, presence: true
 
 
-  def self.ingredient_to_table(category_name=false)
-    return '' if !category_name
-
+  def self.ingredient_to_table(category_name)
+    category_name = 'Fermentables' if category_name.nil?
+    
     if (category_name == 'Fermentables')
       cols = {name: 'Name', origin: 'Origin', kind: 'Kind', color: 'Color', ppg: 'PPG'}
     elsif (category_name == 'Yeasts')
@@ -63,6 +63,7 @@ class Ingredient < ApplicationRecord
       end
       body += "</tr>"
     end
+
     return header + body + '</table>'
   end
 

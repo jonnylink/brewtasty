@@ -8,6 +8,13 @@
   <% end %>
   </h2>
 
+  <div id="ingredient_category_menu">
+    <% Category.all.order(:name).each do |category| %>
+      <% the_class = @ingredient_category == category.name ? "ingredient_category_menu_item selected" : "ingredient_category_menu_item" %>
+      <%= link_to category.name, ingredients_path(category: category.name), class: the_class %>
+    <% end %>
+  </div>
+
   <%= Ingredient::ingredient_to_table(@ingredient_category).html_safe %>
 
 </div>
