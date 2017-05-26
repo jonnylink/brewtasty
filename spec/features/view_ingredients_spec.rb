@@ -1,7 +1,7 @@
 require "rails_helper"
 
 feature "view ingredients" do
-  let!(:category){ FactoryGirl.create(:category) }
+  let!(:category){ FactoryGirl.create(:category, name: "Fermentables") }
   let!(:ingredient){ FactoryGirl.create(:ingredient, category: category) }
 
   scenario "user visits ingredients index" do
