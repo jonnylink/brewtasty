@@ -9,18 +9,16 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true
 
-
   def self.ingredient_to_table(category_name)
-    category_name = 'Fermentables' if category_name.nil?
-    
-    if (category_name == 'Fermentables')
-      cols = {name: 'Name', origin: 'Origin', kind: 'Kind', color: 'Color', ppg: 'PPG'}
-    elsif (category_name == 'Yeasts')
-      cols = {name: 'Name', kind: 'Kind', origin: 'Origin', product_id: 'Product ID', alcochol_tolerance: 'Alcohol Tolerance', flocculation: 'Flocculation'}
+    if (category_name == 'Yeasts')
+      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['Origin', 'origin', true, ''], ['Product ID', 'product_id', false, ''], ['Alcohol Tolerance', 'alcochol_tolerance', true, ''], ['Flocculation', 'flocculation', true, '']]
     elsif (category_name == 'Hops')
-      cols = {name: 'Name', kind: 'Kind', alpha: 'AA'}
+      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['AA', 'alpha', false, 'AA']]
     elsif (category_name == 'Others')
-      cols = {name: 'Name'}
+      cols = [['Name', 'name', false, '']]
+    else
+      category_name = 'Fermentables'
+      cols = [['Name', 'name', false, ''], ['Origin', 'origin', true, ''], ['Kind', 'kind', true, ''], ['Color', 'color', false, '&deg;L'], ['PPG', 'ppg', false, 'PPG']]
     end
 
     header = "
@@ -28,39 +26,25 @@ class Ingredient < ApplicationRecord
       <tr>"
 
     cols.each do |col|
-      header += "<th class=\"ingredients\">#{col.second}</th>"
+      header += "<th class=\"ingredients\">#{col[0]}</th>"
     end
     header += '</tr>'
 
     body = ''
     Ingredient.joins(:category).where(categories: {name: category_name}).each do |ingredient|
       body += "
-      <tr>
-        <td>#{ingredient.name}</td>"
-      if cols.key?(:kind)
-        body += ingredient.kind.nil? ? "<td></td>" : "<td>#{ingredient.kind.name}</td>"
+      <tr>"
+
+      cols.each do |col|
+        if (ingredient.send(col[1].to_s).nil?)
+          body += "<td></td>"
+        elsif (col[2])
+          body += "<td>#{ingredient.send(col[1].to_s).name}#{col[3]}</td>"
+        else
+          body += "<td>#{ingredient[col[1]]}#{col[3]}</td>"
+        end
       end
-      if cols.key?(:origin)
-        body += ingredient.origin.nil? ? "<td></td>" : "<td>#{ingredient.origin.name}</td>"
-      end
-      if cols.key?(:product_id)
-        body += ingredient.product_id.blank? ? "<td></td>" : "<td>#{ingredient.product_id}</td>"
-      end
-      if cols.key?(:alcochol_tolerance)
-        body += ingredient.alcohol_tolerance_id.nil? ? "<td></td>" : "<td>#{ingredient.alcohol_tolerance.name}</td>"
-      end
-      if cols.key?(:flocculation)
-        body += ingredient.flocculation_id.nil? ? "<td></td>" : "<td>#{ingredient.flocculation.name}</td>"
-      end
-      if cols.key?(:color)
-        body += ingredient.color.blank? ? "<td></td>" : "<td>#{ingredient.color} &deg;L</td>"
-      end
-      if cols.key?(:ppg)
-        body += ingredient.ppg.blank? ? "<td></td>" : "<td>#{ingredient.ppg.round(0)} PPG</td>"
-      end
-      if cols.key?(:alpha)
-        body += ingredient.alpha.blank? ? "<td></td>" : "<td>#{ingredient.alpha} AA</td>"
-      end
+
       body += "</tr>"
     end
 
