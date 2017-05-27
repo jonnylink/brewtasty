@@ -11,7 +11,7 @@ class Ingredient < ApplicationRecord
 
   def self.ingredient_to_table(category_name)
     if (category_name == 'Yeasts')
-      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['Origin', 'origin', true, ''], ['Product ID', 'product_id', false, ''], ['Alcohol Tolerance', 'alcochol_tolerance', true, ''], ['Flocculation', 'flocculation', true, '']]
+      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['Origin', 'origin', true, ''], ['Product ID', 'product_id', false, ''], ['Alcohol Tolerance', 'alcohol_tolerance', true, ''], ['Flocculation', 'flocculation', true, '']]
     elsif (category_name == 'Hops')
       cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['AA', 'alpha', false, 'AA']]
     elsif (category_name == 'Others')
@@ -22,18 +22,13 @@ class Ingredient < ApplicationRecord
     end
 
     header = "
-    <table id=\"#{category_name}_list\">
-      <tr>"
-
-    cols.each do |col|
-      header += "<th class=\"ingredients\">#{col[0]}</th>"
-    end
+    <table id=\"#{category_name}_list\"> <tr>"
+    cols.each {|col| header += "<th class=\"ingredients\">#{col[0]}</th>" }
     header += '</tr>'
 
     body = ''
     Ingredient.joins(:category).where(categories: {name: category_name}).each do |ingredient|
-      body += "
-      <tr>"
+      body += "<tr>"
 
       cols.each do |col|
         if (ingredient.send(col[1].to_s).nil?)
