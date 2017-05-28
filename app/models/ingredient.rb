@@ -18,7 +18,7 @@ class Ingredient < ApplicationRecord
       cols = [['Name', 'name', false, '']]
     else
       category_name = 'Fermentables'
-      cols = [['Name', 'name', false, ''], ['Origin', 'origin', true, ''], ['Kind', 'kind', true, ''], ['Color', 'color', false, '&deg;L'], ['PPG', 'ppg', false, 'PPG']]
+      cols = [['Name', 'name', false, ''], ['Origin', 'origin', true, ''], ['Kind', 'kind', true, ''], ['Color', 'color', false, '&deg;L'], ['PPG', 'ppg', false, '']]
     end
 
     header = "
@@ -34,9 +34,9 @@ class Ingredient < ApplicationRecord
         if (ingredient.send(col[1].to_s).nil?)
           body += "<td></td>"
         elsif (col[2])
-          body += "<td>#{ingredient.send(col[1].to_s).name}#{col[3]}</td>"
+          body += "<td>#{ingredient.send(col[1].to_s).name} #{col[3]}</td>"
         else
-          body += "<td>#{ingredient[col[1]]}#{col[3]}</td>"
+          body += "<td>#{ingredient[col[1]]} #{col[3]}</td>"
         end
       end
 
