@@ -6,7 +6,7 @@
 
 ### ABOUT
 --------------------
-TastyBrew will be an inventory tracking and recipe suggestion tool for craft and home brewers. Demo can be found at https://tastybrew.herokuapp.com
+TastyBrew will be an inventory tracking and recipe suggestion tool for craft and home brewers. Demo can be found at https://tastybrew.herokuapp.com (username: jon@email.com / password: testtest)
 
 ### FEATURES
 --------------------
@@ -15,6 +15,12 @@ TastyBrew will be an inventory tracking and recipe suggestion tool for craft and
 * Recipe rating
 * ABV calculation
 * IBU calculation
+
+### Requirements
+--------------------
+* Ruby 2.2.5+
+* Rails 5+
+* Postgres 9.6+
 
 ### Getting Started
 --------------------

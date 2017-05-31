@@ -1,4 +1,4 @@
-#this is for dev
+#this is for demo production
 require 'csv'
 
 puts "Seeding tables"
@@ -100,17 +100,17 @@ puts "***---- creating example users"
 recipe_user = User.create(
   username: "jonlink",
   email: "jonlink@email.com",
-  password: "testtest"
+  password: "test"
 )
 rating_user = User.create(
   username: "brylink",
   email: "brylink@email.com",
-  password: "testtest"
+  password: "test"
 )
 rating_user2 = User.create(
   username: "roblink",
   email: "roblink@email.com",
-  password: "testtest"
+  password: "test"
 )
 
 puts "****--- creating example recipe"
