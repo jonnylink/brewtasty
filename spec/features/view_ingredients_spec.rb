@@ -7,7 +7,7 @@ feature "view ingredients" do
   let!(:others){ FactoryGirl.create(:category, name: "Others") }
   let!(:ingredient1){ FactoryGirl.create(:ingredient, category: fermentables) }
   let!(:ingredient2){ FactoryGirl.create(:ingredient, category: yeasts) }
-  let!(:ingredient3){ FactoryGirl.create(:ingredient, category: hops) }
+  let!(:ingredient3){ FactoryGirl.create(:ingredient, category: hops, alpha: 4.5) }
   let!(:ingredient4){ FactoryGirl.create(:ingredient, category: others) }
 
   scenario "user visits ingredients index" do

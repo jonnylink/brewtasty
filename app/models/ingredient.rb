@@ -10,20 +10,21 @@ class Ingredient < ApplicationRecord
   validates :name, presence: true
 
   def self.ingredient_to_table(category_name)
+    # [Column Title, column_name, unit, class_name]
     if (category_name == 'Yeasts')
-      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['Origin', 'origin', true, ''], ['Product ID', 'product_id', false, ''], ['Alcohol Tolerance', 'alcohol_tolerance', true, ''], ['Flocculation', 'flocculation', true, '']]
+      cols = [['Name', 'name', false, '', ''], ['Kind', 'kind', true, '', 'medium_table center'], ['Origin', 'origin', true, '', ''], ['Product ID', 'product_id', false, '', ''], ['Alcohol Tolerance', 'alcohol_tolerance', true, '', 'medium_table center'], ['Flocculation', 'flocculation', true, '', 'medium_table center']]
     elsif (category_name == 'Hops')
-      cols = [['Name', 'name', false, ''], ['Kind', 'kind', true, ''], ['AA', 'alpha', false, 'AA']]
+      cols = [['Name', 'name', false, '', ''], ['Kind', 'kind', true, '', 'center'], ['AA', 'alpha', false, 'AA', 'center']]
     elsif (category_name == 'Others')
-      cols = [['Name', 'name', false, '']]
+      cols = [['Name', 'name', false, '', '']]
     else
       category_name = 'Fermentables'
-      cols = [['Name', 'name', false, ''], ['Origin', 'origin', true, ''], ['Kind', 'kind', true, ''], ['Color', 'color', false, '&deg;L'], ['PPG', 'ppg', false, '']]
+      cols = [['Name', 'name', false, '', ''], ['Origin', 'origin', true, '', 'medium_table'], ['Kind', 'kind', true, '', 'center'], ['Color', 'color', false, '&deg;L', 'medium_table center'], ['PPG', 'ppg', false, '', 'center']]
     end
 
     header = "
-    <table id=\"#{category_name}_list\"> <tr>"
-    cols.each {|col| header += "<th class=\"ingredients\">#{col[0]}</th>" }
+    <table id=\"ingredients_list\"> <tr>"
+    cols.each {|col| header += "<th class=\"ingredients #{col[4].to_s}\">#{col[0]}</th>" }
     header += '</tr>'
 
     body = ''
@@ -32,11 +33,11 @@ class Ingredient < ApplicationRecord
 
       cols.each do |col|
         if (ingredient.send(col[1].to_s).nil?)
-          body += "<td></td>"
+          body += "<td class=\"#{col[4].to_s}\"></td>"
         elsif (col[2])
-          body += "<td>#{ingredient.send(col[1].to_s).name} #{col[3]}</td>"
+          body += "<td class=\"#{col[4].to_s}\">#{ingredient.send(col[1].to_s).name} #{col[3]}</td>"
         else
-          body += "<td>#{ingredient[col[1]]} #{col[3]}</td>"
+          body += "<td class=\"#{col[4].to_s}\">#{ingredient[col[1]]} #{col[3]}</td>"
         end
       end
 
