@@ -18,7 +18,9 @@
         <% end %>
         <%= link_to 'Recipes', recipes_path %> &bull;
         <%= link_to 'Ingredients', ingredients_path %>
-
+        <% if current_user %>
+           &bull; <a href="">Brew</a>
+        <% end %>
       </div>
 
       <div id="nav_links_right">

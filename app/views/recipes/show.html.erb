@@ -10,7 +10,9 @@
       <% end %>
     </span>
   </h2>
-  <p id="creator">by <%= link_to @recipe.user.username, user_path(@recipe.user) %></p>
+  <p id="creator">by <%= @recipe.user.username %>
+    <!-- <%= link_to @recipe.user.username, user_path(@recipe.user) %> -->
+  </p>
 
   <h3>Ingredients</h3>
   <table id="ingredient_table">
