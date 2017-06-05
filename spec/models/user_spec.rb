@@ -11,6 +11,41 @@ describe User do
     expect(FactoryGirl.create(:user)).to be_valid
   end
 
+  it "returns false if a user doesn't have the inventory to brew a beer" do
+    user = FactoryGirl.create(:user)
+    unit = FactoryGirl.create(:unit)
+    category = FactoryGirl.create(:category)
+    ingredient = FactoryGirl.create(:ingredient, category: category)
+    recipe = FactoryGirl.create(:recipe, user: user)
+    recipe_ingredient = FactoryGirl.create(:recipe_ingredient,
+      recipe: recipe,
+      ingredient: ingredient,
+      unit: unit
+    )
+    expect(user.can_brew?(recipe)).to eq false
+  end
+
+  it "returns false if a user doesn't have enough of the inventory to brew a beer" do
+    user = FactoryGirl.create(:user)
+    unit = FactoryGirl.create(:unit)
+    category = FactoryGirl.create(:category)
+    ingredient = FactoryGirl.create(:ingredient, category: category)
+    inventory = FactoryGirl.create(:inventory,
+      user: user,
+      ingredient: ingredient,
+      unit: unit,
+      amount: 2
+    )
+    recipe = FactoryGirl.create(:recipe, user: user)
+    recipe_ingredient = FactoryGirl.create(:recipe_ingredient,
+      recipe: recipe,
+      ingredient: ingredient,
+      unit: unit,
+      amount: 30
+    )
+    expect(user.can_brew?(recipe)).to eq false
+  end
+
   it "returns true if a user has the inventory to brew a beer" do
     user = FactoryGirl.create(:user)
     unit = FactoryGirl.create(:unit)
@@ -28,19 +63,5 @@ describe User do
       unit: unit
     )
     expect(user.can_brew?(recipe)).to eq true
-  end
-
-  it "returns false if a user doesn't have the inventory to brew a beer" do
-    user = FactoryGirl.create(:user)
-    unit = FactoryGirl.create(:unit)
-    category = FactoryGirl.create(:category)
-    ingredient = FactoryGirl.create(:ingredient, category: category)
-    recipe = FactoryGirl.create(:recipe, user: user)
-    recipe_ingredient = FactoryGirl.create(:recipe_ingredient,
-      recipe: recipe,
-      ingredient: ingredient,
-      unit: unit
-    )
-    expect(user.can_brew?(recipe)).to eq false
   end
 end
